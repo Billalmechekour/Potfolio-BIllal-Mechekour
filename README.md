@@ -1,6 +1,8 @@
 # Portfolio de Billal Mechekour
 
-Portfolio React moderne construit avec Vite.
+Portfolio interactif regroupant mes projets en développement web, démontrant mes compétences techniques, ma créativité et ma capacité à concevoir des applications complètes.
+
+Application React moderne construite avec Vite.
 
 ## Démarrage
 
