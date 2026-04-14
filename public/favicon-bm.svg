@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#071B40" />
+      <stop offset="100%" stop-color="#0A2A5E" />
+    </linearGradient>
+    <linearGradient id="text" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7FD9FF" />
+      <stop offset="100%" stop-color="#2EA8FF" />
+    </linearGradient>
+  </defs>
+
+  <rect x="3" y="3" width="58" height="58" rx="14" fill="url(#bg)" stroke="#35B2FF" stroke-width="2.5" />
+  <text
+    x="32"
+    y="41"
+    text-anchor="middle"
+    font-family="Segoe UI, Arial, sans-serif"
+    font-weight="800"
+    font-size="26"
+    fill="url(#text)"
+  >
+    BM
+  </text>
+</svg>
