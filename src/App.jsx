@@ -2837,6 +2837,7 @@ const HeroMetrics = memo(function HeroMetrics({ language, experienceMetrics }) {
 function App() {
   const languageMenuRef = useRef(null);
   const topbarRef = useRef(null);
+  const activeSectionRef = useRef("profile");
   const [theme, setTheme] = useState(() => {
     if (typeof window === "undefined") {
       return "dark";
@@ -3006,7 +3007,11 @@ function App() {
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
         if (visibleSections.length > 0) {
-          setActiveNav(visibleSections[0].target.id);
+          const nextSectionId = visibleSections[0].target.id;
+          if (nextSectionId !== activeSectionRef.current) {
+            activeSectionRef.current = nextSectionId;
+            setActiveNav(nextSectionId);
+          }
         }
       },
       {
@@ -3144,29 +3149,59 @@ function App() {
       .map((gallery) => gallery?.[0])
       .filter((mediaPath) => Boolean(mediaPath) && mediaPath !== primaryProjectMedia);
 
+    const warmQueue = firstProjectMedia.slice(0, isMobileViewport ? 1 : 3);
+    const warmTimers = [];
+    let idleId;
+    let bootstrapTimer;
+    let loadHandler;
+
+    const pickWarmSource = (mediaPath) =>
+      isMobileViewport
+        ? toProjectXSWebpFromMediaPath(mediaPath)
+        : toProjectSmallWebpFromMediaPath(mediaPath);
+
     const warmFirstProjectMedia = () => {
-      firstProjectMedia.forEach((mediaPath) => {
+      let index = 0;
+      const warmNext = () => {
+        if (index >= warmQueue.length) {
+          return;
+        }
+        const mediaPath = warmQueue[index];
+        index += 1;
         const img = new Image();
         img.decoding = "async";
-        img.src = toProjectSmallWebpFromMediaPath(mediaPath);
-      });
+        img.fetchPriority = "low";
+        img.src = pickWarmSource(mediaPath);
+        warmTimers.push(window.setTimeout(warmNext, 260));
+      };
+      warmNext();
     };
 
-    let timeoutId;
-    let idleId;
+    const bootstrapWarm = () => {
+      if ("requestIdleCallback" in window) {
+        idleId = window.requestIdleCallback(warmFirstProjectMedia, { timeout: 2200 });
+        return;
+      }
+      bootstrapTimer = window.setTimeout(warmFirstProjectMedia, 1200);
+    };
 
-    if ("requestIdleCallback" in window) {
-      idleId = window.requestIdleCallback(warmFirstProjectMedia, { timeout: 1400 });
+    if (document.readyState === "complete") {
+      bootstrapWarm();
     } else {
-      timeoutId = window.setTimeout(warmFirstProjectMedia, 600);
+      loadHandler = () => bootstrapWarm();
+      window.addEventListener("load", loadHandler, { once: true });
     }
 
     return () => {
       if (typeof idleId === "number" && "cancelIdleCallback" in window) {
         window.cancelIdleCallback(idleId);
       }
-      if (typeof timeoutId === "number") {
-        window.clearTimeout(timeoutId);
+      if (typeof bootstrapTimer === "number") {
+        window.clearTimeout(bootstrapTimer);
+      }
+      warmTimers.forEach((timerId) => window.clearTimeout(timerId));
+      if (loadHandler) {
+        window.removeEventListener("load", loadHandler);
       }
     };
   }, []);

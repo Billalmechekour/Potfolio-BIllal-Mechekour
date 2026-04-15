@@ -3005,11 +3005,16 @@
 
   .project-card {
     padding: 15px;
+    content-visibility: visible;
+    contain-intrinsic-size: auto;
+    overflow: hidden;
   }
 
   .project-showcase {
     grid-template-columns: minmax(0, 1fr);
     gap: 14px;
+    width: 100%;
+    min-width: 0;
   }
 
   .project-card header {
@@ -3019,10 +3024,18 @@
 
   .project-media {
     min-height: 208px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
   }
 
   .project-media-main {
     min-height: 0;
+  }
+
+  .stack-list li {
+    max-width: 100%;
+    overflow-wrap: anywhere;
   }
 
   .project-thumb {
@@ -3080,6 +3093,16 @@
 
   .assistant-fab {
     align-self: flex-end;
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 900px) {
+    .project-group,
+    .project-card {
+      content-visibility: visible;
+      contain-intrinsic-size: auto;
+    }
   }
 }
 
