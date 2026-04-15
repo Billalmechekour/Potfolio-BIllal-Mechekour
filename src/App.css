@@ -843,6 +843,8 @@
   border-radius: 16px;
   padding: 18px;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  content-visibility: auto;
+  contain-intrinsic-size: 560px;
 }
 
 .project-card:hover {
@@ -967,6 +969,13 @@
   overflow: hidden;
   border: 1px solid rgba(56, 189, 248, 0.2);
   background: rgba(248, 252, 255, 0.76);
+}
+
+.project-media-main picture,
+.project-thumb picture {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .project-media-main img {
@@ -1640,6 +1649,18 @@
   gap: 10px;
 }
 
+.assistant-mobile-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 92;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: rgba(2, 11, 26, 0.16);
+  backdrop-filter: blur(7px);
+}
+
 .assistant-fab {
   display: inline-grid;
   place-items: center;
@@ -1979,6 +2000,10 @@
 }
 
 @media (max-width: 760px) {
+  .assistant-mobile-backdrop {
+    display: block;
+  }
+
   [dir="rtl"] .assistant-widget {
     left: 10px;
     right: 10px;

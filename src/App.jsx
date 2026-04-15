@@ -416,15 +416,47 @@ const PROJECT_COPY = {
   },
 };
 
-const PROJECT_SCREENSHOTS = {
-  "mega-shop": encodeURI("/captures projets/megaShop.png"),
-  Shifa: encodeURI("/captures projets/Shifa.png"),
-  "algo-game": encodeURI("/captures projets/AlgoGame.png"),
-  "coach-sport-app": encodeURI("/captures projets/coach-sport-app.png"),
-  "Béjaïa Tour Guide": encodeURI("/captures projets/BejaiaTourGuide.png"),
+const toOptimizedProjectPath = (path, variantDir = "project-media") => {
+  const decodedPath = decodeURI(path);
+  const normalizedPath = decodedPath.startsWith("/") ? decodedPath.slice(1) : decodedPath;
+  const optimizedPath = normalizedPath.replace(/\.(png|jpe?g|webp)$/i, ".jpg");
+  return encodeURI(`/${variantDir}/${optimizedPath}`);
 };
 
-const encodeGallery = (paths) => paths.map((path) => encodeURI(path));
+const toProjectMediaPath = (path) => toOptimizedProjectPath(path, "project-media");
+
+const toProjectThumbFromMediaPath = (mediaPath) => {
+  const decodedPath = decodeURI(mediaPath);
+  return encodeURI(decodedPath.replace(/^\/project-media\//, "/project-thumbs/"));
+};
+
+const toProjectWebpFromMediaPath = (mediaPath) => {
+  const decodedPath = decodeURI(mediaPath);
+  return encodeURI(
+    decodedPath
+      .replace(/^\/project-media\//, "/project-media-webp/")
+      .replace(/\.(png|jpe?g|webp)$/i, ".webp")
+  );
+};
+
+const toProjectThumbWebpFromMediaPath = (mediaPath) => {
+  const decodedPath = decodeURI(mediaPath);
+  return encodeURI(
+    decodedPath
+      .replace(/^\/project-media\//, "/project-thumbs-webp/")
+      .replace(/\.(png|jpe?g|webp)$/i, ".webp")
+  );
+};
+
+const PROJECT_SCREENSHOTS = {
+  "mega-shop": toProjectMediaPath("/captures projets/megaShop.png"),
+  Shifa: toProjectMediaPath("/captures projets/Shifa.png"),
+  "algo-game": toProjectMediaPath("/captures projets/AlgoGame.png"),
+  "coach-sport-app": toProjectMediaPath("/captures projets/coach-sport-app.png"),
+  "Béjaïa Tour Guide": toProjectMediaPath("/captures projets/BejaiaTourGuide.png"),
+};
+
+const encodeGallery = (paths) => paths.map((path) => toProjectMediaPath(path));
 
 const PROJECT_GALLERIES = {
   "mega-shop": encodeGallery([
@@ -966,8 +998,9 @@ const CHATBOT_UI = {
     confirmYesNo: "Réponds par oui ou non.",
     notUnderstood:
       "Je n'ai pas compris votre question, essaye de la formuler bien.",
+    greetingHelp: "Comment puis-je t'aider 😊",
     welcome:
-      "Salut, je suis l'assistant de Billal. Je peux répondre sur son profil, ses projets, ses compétences, sa formation, son stage et ses contacts.",
+      "Salut ✨ Je suis l'assistant de Billal. Je peux répondre sur son profil, ses projets, ses compétences, sa formation, son stage et ses contacts.",
     suggestions: [
       "Présente-toi",
       "Quels sont tes projets ?",
@@ -977,43 +1010,43 @@ const CHATBOT_UI = {
     fallback:
       "Je peux répondre sur: profil, projets, compétences, formation, stage, langues, expérience, CV, contact, pays, résidence, âge, naissance, bac et parcours universitaire.",
     labels: {
-      profile: "Profil",
-      identity: "Qui est Billal",
-      firstName: "Prénom",
-      lastName: "Nom",
-      projects: "Projets",
-      skills: "Compétences techniques",
-      skillsInGroup: "Compétences en",
-      education: "Formation",
-      internship: "Stage",
-      internshipLocation: "Lieu du stage",
-      license3: "Licence 3",
-      license2: "Licence 2",
-      license1: "Licence 1",
-      master: "Master",
-      baccalaureate: "Baccalauréat",
-      baccalaureateMention: "Mention du bac",
-      baccalaureateAverage: "Moyenne du bac",
-      motherTongue: "Langue maternelle",
-      webExperience: "Expérience web",
-      designExperience: "Expérience design",
-      projectsCount: "Nombre de projets",
-      technologiesCount: "Nombre de technologies",
-      contacts: "Contacts",
-      cv: "CV",
-      cvPreview: "Aperçu du CV",
-      cvDownload: "Télécharger le CV",
-      location: "Localisation",
-      country: "Pays",
-      residence: "Résidence",
-      birthplace: "Lieu de naissance",
-      birthDate: "Date de naissance",
-      age: "Âge",
-      experience: "Expérience",
-      availability: "Disponibilité",
-      stack: "Stack",
-      repo: "GitHub",
-      live: "Live",
+      profile: "👤 Profil",
+      identity: "🧑 Qui est Billal",
+      firstName: "🪪 Prénom",
+      lastName: "🪪 Nom",
+      projects: "🚀 Projets",
+      skills: "🛠️ Compétences techniques",
+      skillsInGroup: "🧩 Compétences en",
+      education: "🎓 Formation",
+      internship: "💼 Stage",
+      internshipLocation: "📍 Lieu du stage",
+      license3: "📘 Licence 3",
+      license2: "📗 Licence 2",
+      license1: "📕 Licence 1",
+      master: "🎯 Master",
+      baccalaureate: "🏫 Baccalauréat",
+      baccalaureateMention: "⭐ Mention du bac",
+      baccalaureateAverage: "📊 Moyenne du bac",
+      motherTongue: "🗣️ Langue maternelle",
+      webExperience: "💻 Expérience web",
+      designExperience: "🎨 Expérience design",
+      projectsCount: "📦 Nombre de projets",
+      technologiesCount: "🧠 Nombre de technologies",
+      contacts: "📞 Contacts",
+      cv: "📄 CV",
+      cvPreview: "📄 Aperçu du CV",
+      cvDownload: "⬇️ Télécharger le CV",
+      location: "📍 Localisation",
+      country: "🌍 Pays",
+      residence: "🏠 Résidence",
+      birthplace: "🧭 Lieu de naissance",
+      birthDate: "🎂 Date de naissance",
+      age: "⏳ Âge",
+      experience: "📈 Expérience",
+      availability: "✅ Disponibilité",
+      stack: "🧩 Stack",
+      repo: "🐙 GitHub",
+      live: "🟢 Live",
     },
   },
   en: {
@@ -1030,8 +1063,9 @@ const CHATBOT_UI = {
     clarify: "Do you mean: \"{question}\"?",
     confirmYesNo: "Please answer with yes or no.",
     notUnderstood: "I didn't understand your question, please rephrase it clearly.",
+    greetingHelp: "How can I help you? 😊",
     welcome:
-      "Hi, I'm Billal's assistant. I can answer questions about his profile, projects, skills, education, internship, and contact links.",
+      "Hi ✨ I'm Billal's assistant. I can answer questions about his profile, projects, skills, education, internship, and contact links.",
     suggestions: [
       "Introduce yourself",
       "What are your projects?",
@@ -1041,43 +1075,43 @@ const CHATBOT_UI = {
     fallback:
       "I can answer about: profile, projects, skills, education, internship, languages, experience, CV, contact, country, residence, age, birthplace, baccalaureate, and academic path.",
     labels: {
-      profile: "Profile",
-      identity: "Who is Billal",
-      firstName: "First name",
-      lastName: "Last name",
-      projects: "Projects",
-      skills: "Technical skills",
-      skillsInGroup: "Skills in",
-      education: "Education",
-      internship: "Internship",
-      internshipLocation: "Internship location",
-      license3: "Bachelor Year 3",
-      license2: "Bachelor Year 2",
-      license1: "Bachelor Year 1",
-      master: "Master",
-      baccalaureate: "Baccalaureate",
-      baccalaureateMention: "Baccalaureate mention",
-      baccalaureateAverage: "Baccalaureate average",
-      motherTongue: "Mother tongue",
-      webExperience: "Web experience",
-      designExperience: "Design experience",
-      projectsCount: "Projects count",
-      technologiesCount: "Technologies count",
-      contacts: "Contact",
-      cv: "CV",
-      cvPreview: "CV preview",
-      cvDownload: "Download CV",
-      location: "Location",
-      country: "Country",
-      residence: "Residence",
-      birthplace: "Birthplace",
-      birthDate: "Birth date",
-      age: "Age",
-      experience: "Experience",
-      availability: "Availability",
-      stack: "Stack",
-      repo: "GitHub",
-      live: "Live",
+      profile: "👤 Profile",
+      identity: "🧑 Who is Billal",
+      firstName: "🪪 First name",
+      lastName: "🪪 Last name",
+      projects: "🚀 Projects",
+      skills: "🛠️ Technical skills",
+      skillsInGroup: "🧩 Skills in",
+      education: "🎓 Education",
+      internship: "💼 Internship",
+      internshipLocation: "📍 Internship location",
+      license3: "📘 Bachelor Year 3",
+      license2: "📗 Bachelor Year 2",
+      license1: "📕 Bachelor Year 1",
+      master: "🎯 Master",
+      baccalaureate: "🏫 Baccalaureate",
+      baccalaureateMention: "⭐ Baccalaureate mention",
+      baccalaureateAverage: "📊 Baccalaureate average",
+      motherTongue: "🗣️ Mother tongue",
+      webExperience: "💻 Web experience",
+      designExperience: "🎨 Design experience",
+      projectsCount: "📦 Projects count",
+      technologiesCount: "🧠 Technologies count",
+      contacts: "📞 Contact",
+      cv: "📄 CV",
+      cvPreview: "📄 CV preview",
+      cvDownload: "⬇️ Download CV",
+      location: "📍 Location",
+      country: "🌍 Country",
+      residence: "🏠 Residence",
+      birthplace: "🧭 Birthplace",
+      birthDate: "🎂 Birth date",
+      age: "⏳ Age",
+      experience: "📈 Experience",
+      availability: "✅ Availability",
+      stack: "🧩 Stack",
+      repo: "🐙 GitHub",
+      live: "🟢 Live",
     },
   },
   ar: {
@@ -1094,8 +1128,9 @@ const CHATBOT_UI = {
     clarify: "هل تقصد: \"{question}\"؟",
     confirmYesNo: "يرجى الرد بنعم أو لا.",
     notUnderstood: "لم أفهم سؤالك، حاول إعادة صياغته بشكل أوضح.",
+    greetingHelp: "كيف يمكنني مساعدتك؟ 😊",
     welcome:
-      "مرحباً، أنا مساعد بلال. أستطيع الإجابة عن ملفه، مشاريعه، مهاراته، تكوينه، تربصه ووسائل التواصل.",
+      "مرحباً ✨ أنا مساعد بلال. أستطيع الإجابة عن ملفه، مشاريعه، مهاراته، تكوينه، تربصه ووسائل التواصل.",
     suggestions: [
       "عرفني بنفسك",
       "ما هي مشاريعك؟",
@@ -1105,43 +1140,43 @@ const CHATBOT_UI = {
     fallback:
       "أستطيع الإجابة عن: الملف، المشاريع، المهارات، التكوين، التربص، اللغات، الخبرة، السيرة الذاتية، التواصل، البلد، الإقامة، العمر، الميلاد، البكالوريا، والمسار الجامعي.",
     labels: {
-      profile: "الملف",
-      identity: "من هو بلال",
-      firstName: "الاسم",
-      lastName: "اللقب",
-      projects: "المشاريع",
-      skills: "المهارات التقنية",
-      skillsInGroup: "مهارات",
-      education: "التكوين",
-      internship: "التربص",
-      internshipLocation: "مكان التربص",
-      license3: "ليسانس 3",
-      license2: "ليسانس 2",
-      license1: "ليسانس 1",
-      master: "الماستر",
-      baccalaureate: "البكالوريا",
-      baccalaureateMention: "تقدير البكالوريا",
-      baccalaureateAverage: "معدل البكالوريا",
-      motherTongue: "اللغة الأم",
-      webExperience: "خبرة الويب",
-      designExperience: "خبرة التصميم",
-      projectsCount: "عدد المشاريع",
-      technologiesCount: "عدد التقنيات",
-      contacts: "التواصل",
-      cv: "السيرة الذاتية",
-      cvPreview: "معاينة السيرة الذاتية",
-      cvDownload: "تحميل السيرة الذاتية",
-      location: "الموقع",
-      country: "البلد",
-      residence: "الإقامة",
-      birthplace: "مكان الميلاد",
-      birthDate: "تاريخ الميلاد",
-      age: "العمر",
-      experience: "الخبرة",
-      availability: "التوفر",
-      stack: "التقنيات",
-      repo: "GitHub",
-      live: "Live",
+      profile: "👤 الملف",
+      identity: "🧑 من هو بلال",
+      firstName: "🪪 الاسم",
+      lastName: "🪪 اللقب",
+      projects: "🚀 المشاريع",
+      skills: "🛠️ المهارات التقنية",
+      skillsInGroup: "🧩 مهارات",
+      education: "🎓 التكوين",
+      internship: "💼 التربص",
+      internshipLocation: "📍 مكان التربص",
+      license3: "📘 ليسانس 3",
+      license2: "📗 ليسانس 2",
+      license1: "📕 ليسانس 1",
+      master: "🎯 الماستر",
+      baccalaureate: "🏫 البكالوريا",
+      baccalaureateMention: "⭐ تقدير البكالوريا",
+      baccalaureateAverage: "📊 معدل البكالوريا",
+      motherTongue: "🗣️ اللغة الأم",
+      webExperience: "💻 خبرة الويب",
+      designExperience: "🎨 خبرة التصميم",
+      projectsCount: "📦 عدد المشاريع",
+      technologiesCount: "🧠 عدد التقنيات",
+      contacts: "📞 التواصل",
+      cv: "📄 السيرة الذاتية",
+      cvPreview: "📄 معاينة السيرة الذاتية",
+      cvDownload: "⬇️ تحميل السيرة الذاتية",
+      location: "📍 الموقع",
+      country: "🌍 البلد",
+      residence: "🏠 الإقامة",
+      birthplace: "🧭 مكان الميلاد",
+      birthDate: "🎂 تاريخ الميلاد",
+      age: "⏳ العمر",
+      experience: "📈 الخبرة",
+      availability: "✅ التوفر",
+      stack: "🧩 التقنيات",
+      repo: "🐙 GitHub",
+      live: "🟢 Live",
     },
   },
 };
@@ -1262,6 +1297,7 @@ const PROJECT_QUERY_KEYWORDS = {
 const CHATBOT_KEYWORDS = {
   greeting: [
     "bonjour",
+    "bonsoir",
     "salut",
     "hello",
     "hi",
@@ -1675,8 +1711,12 @@ const detectPersonalIntent = (normalizedMessage) => {
     hasKeyword(normalizedMessage, ["nom", "last name", "family name", "surname", "nom famille"]) ||
     tokens.includes("nom");
 
-  const asksWhere = hasApproxToken(tokens, ["ou", "où", "where", "وين", "اين", "أين", "lieu"], 2);
-  const mentionsStage = hasApproxToken(tokens, ["stage", "internship", "tربص", "تربص", "تدريب"], 2);
+  const asksWhere =
+    hasKeyword(normalizedMessage, ["ou", "où", "where", "lieu", "وين", "اين", "أين", "مكان"]) ||
+    hasApproxToken(tokens, ["where", "lieu", "مكان"], 1);
+  const mentionsStage =
+    hasKeyword(normalizedMessage, ["stage", "internship", "تربص", "تدريب"]) ||
+    hasApproxToken(tokens, ["stage", "internship", "تربص", "تدريب"], 1);
   const mentionsLicense = hasApproxToken(tokens, ["licence", "license", "licene", "ليسانس"], 2);
   const mentionsMaster = hasApproxToken(tokens, ["master", "m1", "ماستر"], 2);
   const mentionsBac =
@@ -1703,7 +1743,12 @@ const detectPersonalIntent = (normalizedMessage) => {
     return "lastName";
   }
 
-  if (mentionsStage && (asksWhere || hasApproxToken(tokens, ["effectue", "effectuer", "fait"], 2))) {
+  if (
+    mentionsStage &&
+    (asksWhere ||
+      hasKeyword(normalizedMessage, ["ou effectue stage", "où effectue stage", "ou fait stage", "où fait stage"]) ||
+      hasApproxToken(tokens, ["effectue", "effectuer", "fait"], 1))
+  ) {
     return "stageLocation";
   }
 
@@ -1997,6 +2042,13 @@ ${list}`;
 const buildInternshipOverview = (language) => {
   const internship = INTERNSHIP_BY_LANG[language];
   const topics = internship.topics.join("\n");
+  if (language === "fr") {
+    return `${internship.period}
+${internship.subject}
+
+${topics}
+${internship.location}`;
+  }
   return `${internship.period}
 ${internship.subject}
 ${topics}
@@ -2020,7 +2072,11 @@ const buildPersonalDetailOverview = (language, intent) => {
   const personal = CHATBOT_PERSONAL_INFO[language];
 
   if (intent === "stageLocation") {
-    return `${ui.labels.internshipLocation}: ${personal.internshipLocation}`;
+    const location = INTERNSHIP_BY_LANG[language]?.location || personal.internshipLocation;
+    if (language === "fr") {
+      return location;
+    }
+    return `${ui.labels.internshipLocation}: ${location}`;
   }
 
   if (intent === "firstName") {
@@ -2137,8 +2193,14 @@ const buildResidenceOverview = (language) => {
 };
 
 const buildAgeOverview = (language) => {
-  const ui = CHATBOT_UI[language];
-  return `${ui.labels.age}: ${CHATBOT_PERSONAL_INFO[language].age}`;
+  const ageValue = CHATBOT_PERSONAL_INFO[language].age;
+  if (language === "fr") {
+    return ageValue;
+  }
+  if (language === "en") {
+    return `Age: ${ageValue}`;
+  }
+  return `العمر: ${ageValue}`;
 };
 
 const buildBirthDateOverview = (language) => {
@@ -2191,6 +2253,29 @@ ${ui.labels.country}: ${personal.country}`;
 const buildAvailabilityOverview = (language) => {
   const ui = CHATBOT_UI[language];
   return `${ui.labels.availability}: ${TEXTS[language].hero.availability}`;
+};
+
+const buildGreetingResponse = (normalizedMessage, language) => {
+  const ui = CHATBOT_UI[language];
+
+  if (language === "fr") {
+    if (normalizedMessage.includes("bonsoir")) {
+      return `Bonsoir. ${ui.greetingHelp}`;
+    }
+    if (normalizedMessage.includes("bonjour") || normalizedMessage.includes("salut")) {
+      return `Bonjour. ${ui.greetingHelp}`;
+    }
+    return `Bonjour. ${ui.greetingHelp}`;
+  }
+
+  if (language === "ar") {
+    if (normalizedMessage.includes("مساء")) {
+      return `مساء الخير. ${ui.greetingHelp}`;
+    }
+    return `مرحبا. ${ui.greetingHelp}`;
+  }
+
+  return `Hello. ${ui.greetingHelp}`;
 };
 
 const getIntentAnswer = (intent, language) => {
@@ -2316,7 +2401,7 @@ const buildChatbotResponse = (message, language) => {
   }
 
   if (hasKeyword(normalized, CHATBOT_KEYWORDS.greeting)) {
-    return { type: "answer", text: ui.welcome };
+    return { type: "answer", text: buildGreetingResponse(normalized, language) };
   }
 
   if (isSkillsIntent(normalized)) {
@@ -2542,7 +2627,17 @@ function ChatbotWidget({ language }) {
   };
 
   return (
-    <div className={`assistant-widget ${isOpen ? "open" : ""}`} dir={language === "ar" ? "rtl" : "ltr"}>
+    <>
+      {isOpen && (
+        <button
+          type="button"
+          className="assistant-mobile-backdrop"
+          aria-label="Close chatbot overlay"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
+      <div className={`assistant-widget ${isOpen ? "open" : ""}`} dir={language === "ar" ? "rtl" : "ltr"}>
       {isOpen && (
         <section className="assistant-panel" aria-label={ui.title}>
           <header className="assistant-header">
@@ -2637,7 +2732,8 @@ function ChatbotWidget({ language }) {
           <img src="/ChatBotBilal.png" alt="" loading="lazy" />
         </span>
       </button>
-    </div>
+      </div>
+    </>
   );
 }
 
@@ -3210,11 +3306,19 @@ function App() {
                       <figure className="project-media">
                         <div className="project-media-main">
                           {mainScreenshot ? (
-                            <img
-                              src={mainScreenshot}
-                              alt={`Capture d'écran du projet ${project.name}`}
-                              loading="lazy"
-                            />
+                            <picture>
+                              <source
+                                srcSet={toProjectWebpFromMediaPath(mainScreenshot)}
+                                type="image/webp"
+                              />
+                              <img
+                                src={mainScreenshot}
+                                alt={`Capture d'écran du projet ${project.name}`}
+                                loading="lazy"
+                                decoding="async"
+                                fetchPriority="low"
+                              />
+                            </picture>
                           ) : (
                             <div className="project-media-empty">Capture bientôt disponible</div>
                           )}
@@ -3241,11 +3345,19 @@ function App() {
                                 aria-label={`Voir capture ${thumbIndex + 1} du projet ${project.name}`}
                                 aria-pressed={imageSrc === mainScreenshot}
                               >
-                                <img
-                                  src={imageSrc}
-                                  alt={`Miniature ${thumbIndex + 1} du projet ${project.name}`}
-                                  loading="lazy"
-                                />
+                                <picture>
+                                  <source
+                                    srcSet={toProjectThumbWebpFromMediaPath(imageSrc)}
+                                    type="image/webp"
+                                  />
+                                  <img
+                                    src={toProjectThumbFromMediaPath(imageSrc)}
+                                    alt={`Miniature ${thumbIndex + 1} du projet ${project.name}`}
+                                    loading="lazy"
+                                    decoding="async"
+                                    fetchPriority="low"
+                                  />
+                                </picture>
                               </button>
                             ))}
                           </div>
