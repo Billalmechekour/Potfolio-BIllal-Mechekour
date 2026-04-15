@@ -823,6 +823,8 @@
 
 .project-group {
   margin-top: 24px;
+  content-visibility: auto;
+  contain-intrinsic-size: 1200px;
 }
 
 .project-group h3 {

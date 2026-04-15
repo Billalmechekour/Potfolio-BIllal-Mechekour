@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   education,
   profile,
@@ -430,11 +430,25 @@ const toProjectThumbFromMediaPath = (mediaPath) => {
   return encodeURI(decodedPath.replace(/^\/project-media\//, "/project-thumbs/"));
 };
 
+const toProjectSmallMediaPath = (mediaPath) => {
+  const decodedPath = decodeURI(mediaPath);
+  return encodeURI(decodedPath.replace(/^\/project-media\//, "/project-media-sm/"));
+};
+
 const toProjectWebpFromMediaPath = (mediaPath) => {
   const decodedPath = decodeURI(mediaPath);
   return encodeURI(
     decodedPath
       .replace(/^\/project-media\//, "/project-media-webp/")
+      .replace(/\.(png|jpe?g|webp)$/i, ".webp")
+  );
+};
+
+const toProjectSmallWebpFromMediaPath = (mediaPath) => {
+  const decodedPath = decodeURI(mediaPath);
+  return encodeURI(
+    decodedPath
+      .replace(/^\/project-media\//, "/project-media-webp-sm/")
       .replace(/\.(png|jpe?g|webp)$/i, ".webp")
   );
 };
@@ -2737,6 +2751,61 @@ function ChatbotWidget({ language }) {
   );
 }
 
+const HeroMetrics = memo(function HeroMetrics({ language, experienceMetrics }) {
+  const [animatedCounts, setAnimatedCounts] = useState(() =>
+    experienceMetrics.map(() => 0)
+  );
+
+  useEffect(() => {
+    const targets = experienceMetrics.map((item) => item.value);
+    const duration = 1300;
+    const delays = targets.map((_, index) => index * 140);
+    let frameId;
+    let start = null;
+
+    setAnimatedCounts(targets.map(() => 0));
+
+    const animate = (timestamp) => {
+      if (start === null) {
+        start = timestamp;
+      }
+
+      const elapsed = timestamp - start;
+      const nextValues = targets.map((target, index) => {
+        const currentElapsed = Math.max(0, elapsed - delays[index]);
+        const progress = Math.min(1, currentElapsed / duration);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        return Math.round(target * eased);
+      });
+
+      setAnimatedCounts(nextValues);
+
+      const isDone = nextValues.every((value, index) => value >= targets[index]);
+      if (!isDone) {
+        frameId = requestAnimationFrame(animate);
+      }
+    };
+
+    frameId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frameId);
+  }, [language, experienceMetrics]);
+
+  return (
+    <ul className="hero-metrics">
+      {experienceMetrics.map((item, index) => (
+        <li key={`${item.label}-${item.value}`} className="exp-pill">
+          <span className="exp-number">
+            {item.prefix || ""}
+            {animatedCounts[index] ?? 0}
+          </span>
+          <span className="exp-suffix">{item.suffix ? ` ${item.suffix}` : ""}</span>
+          <span className="exp-label"> {item.label}</span>
+        </li>
+      ))}
+    </ul>
+  );
+});
+
 function App() {
   const languageMenuRef = useRef(null);
   const topbarRef = useRef(null);
@@ -2988,9 +3057,6 @@ function App() {
     () => LANGUAGE_OPTIONS.find((item) => item.code === language),
     [language]
   );
-  const [animatedCounts, setAnimatedCounts] = useState(() =>
-    experienceMetrics.map(() => 0)
-  );
   const [contactForm, setContactForm] = useState({
     lastName: "",
     firstName: "",
@@ -3023,39 +3089,36 @@ function App() {
   };
 
   useEffect(() => {
-    const targets = experienceMetrics.map((item) => item.value);
-    const duration = 1300;
-    const delays = targets.map((_, index) => index * 140);
-    let frameId;
-    let start = null;
+    const firstProjectMedia = Object.values(PROJECT_GALLERIES)
+      .map((gallery) => gallery?.[0])
+      .filter(Boolean);
 
-    setAnimatedCounts(targets.map(() => 0));
-
-    const animate = (timestamp) => {
-      if (start === null) {
-        start = timestamp;
-      }
-
-      const elapsed = timestamp - start;
-      const nextValues = targets.map((target, index) => {
-        const currentElapsed = Math.max(0, elapsed - delays[index]);
-        const progress = Math.min(1, currentElapsed / duration);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        return Math.round(target * eased);
+    const warmFirstProjectMedia = () => {
+      firstProjectMedia.forEach((mediaPath) => {
+        const img = new Image();
+        img.decoding = "async";
+        img.src = toProjectSmallWebpFromMediaPath(mediaPath);
       });
-
-      setAnimatedCounts(nextValues);
-
-      const isDone = nextValues.every((value, index) => value >= targets[index]);
-      if (!isDone) {
-        frameId = requestAnimationFrame(animate);
-      }
     };
 
-    frameId = requestAnimationFrame(animate);
+    let timeoutId;
+    let idleId;
 
-    return () => cancelAnimationFrame(frameId);
-  }, [language, experienceMetrics]);
+    if ("requestIdleCallback" in window) {
+      idleId = window.requestIdleCallback(warmFirstProjectMedia, { timeout: 1400 });
+    } else {
+      timeoutId = window.setTimeout(warmFirstProjectMedia, 600);
+    }
+
+    return () => {
+      if (typeof idleId === "number" && "cancelIdleCallback" in window) {
+        window.cancelIdleCallback(idleId);
+      }
+      if (typeof timeoutId === "number") {
+        window.clearTimeout(timeoutId);
+      }
+    };
+  }, []);
 
   return (
     <div className="page-shell">
@@ -3202,6 +3265,9 @@ function App() {
                   src={PHOTO_SEQUENCE[currentPhotoIndex]}
                   alt="Photo de Billal Mechekour"
                   className={`hero-photo hero-photo-current ${isPhotoTransitioning ? "orbit-out" : ""}`}
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
                 />
                 {isPhotoTransitioning && (
                   <>
@@ -3218,18 +3284,7 @@ function App() {
             </aside>
           </div>
 
-          <ul className="hero-metrics">
-            {experienceMetrics.map((item, index) => (
-              <li key={`${item.label}-${item.value}`} className="exp-pill">
-                <span className="exp-number">
-                  {item.prefix || ""}
-                  {animatedCounts[index] ?? 0}
-                </span>
-                <span className="exp-suffix">{item.suffix ? ` ${item.suffix}` : ""}</span>
-                <span className="exp-label"> {item.label}</span>
-              </li>
-            ))}
-          </ul>
+          <HeroMetrics language={language} experienceMetrics={experienceMetrics} />
         </section>
 
         <section id="projects" className="section reveal">
@@ -3308,15 +3363,20 @@ function App() {
                           {mainScreenshot ? (
                             <picture>
                               <source
-                                srcSet={toProjectWebpFromMediaPath(mainScreenshot)}
+                                srcSet={`${toProjectSmallWebpFromMediaPath(mainScreenshot)} 1024w, ${toProjectWebpFromMediaPath(mainScreenshot)} 1600w`}
+                                sizes="(max-width: 760px) 92vw, (max-width: 1100px) 84vw, 48vw"
                                 type="image/webp"
                               />
                               <img
-                                src={mainScreenshot}
+                                src={toProjectSmallMediaPath(mainScreenshot)}
+                                srcSet={`${toProjectSmallMediaPath(mainScreenshot)} 1024w, ${mainScreenshot} 1600w`}
+                                sizes="(max-width: 760px) 92vw, (max-width: 1100px) 84vw, 48vw"
                                 alt={`Capture d'écran du projet ${project.name}`}
                                 loading="lazy"
                                 decoding="async"
                                 fetchPriority="low"
+                                width="1600"
+                                height="900"
                               />
                             </picture>
                           ) : (
@@ -3356,6 +3416,8 @@ function App() {
                                     loading="lazy"
                                     decoding="async"
                                     fetchPriority="low"
+                                    width="62"
+                                    height="62"
                                   />
                                 </picture>
                               </button>
