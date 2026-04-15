@@ -435,11 +435,39 @@ const toProjectSmallMediaPath = (mediaPath) => {
   return encodeURI(decodedPath.replace(/^\/project-media\//, "/project-media-sm/"));
 };
 
+const toProjectXSMediaPath = (mediaPath) => {
+  const decodedPath = decodeURI(mediaPath);
+  return encodeURI(decodedPath.replace(/^\/project-media\//, "/project-media-xs/"));
+};
+
+const toProjectXXSMediaPath = (mediaPath) => {
+  const decodedPath = decodeURI(mediaPath);
+  return encodeURI(decodedPath.replace(/^\/project-media\//, "/project-media-xxs/"));
+};
+
 const toProjectWebpFromMediaPath = (mediaPath) => {
   const decodedPath = decodeURI(mediaPath);
   return encodeURI(
     decodedPath
       .replace(/^\/project-media\//, "/project-media-webp/")
+      .replace(/\.(png|jpe?g|webp)$/i, ".webp")
+  );
+};
+
+const toProjectXSWebpFromMediaPath = (mediaPath) => {
+  const decodedPath = decodeURI(mediaPath);
+  return encodeURI(
+    decodedPath
+      .replace(/^\/project-media\//, "/project-media-webp-xs/")
+      .replace(/\.(png|jpe?g|webp)$/i, ".webp")
+  );
+};
+
+const toProjectXXSWebpFromMediaPath = (mediaPath) => {
+  const decodedPath = decodeURI(mediaPath);
+  return encodeURI(
+    decodedPath
+      .replace(/^\/project-media\//, "/project-media-webp-xxs/")
       .replace(/\.(png|jpe?g|webp)$/i, ".webp")
   );
 };
@@ -3089,9 +3117,32 @@ function App() {
   };
 
   useEffect(() => {
+    const primaryProjectMedia = PROJECT_GALLERIES["mega-shop"]?.[0];
+    const connection =
+      navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    const isMobileViewport = window.matchMedia("(max-width: 760px)").matches;
+    const saveData = Boolean(connection?.saveData);
+    const networkType = connection?.effectiveType || "";
+    const downlink = Number(connection?.downlink || 0);
+    const isSlowNetwork = /(^|-)2g/.test(networkType) || (downlink > 0 && downlink < 1.8);
+    const shouldWarmOtherProjects = !isMobileViewport || (!saveData && !isSlowNetwork);
+
+    if (primaryProjectMedia) {
+      const primaryImage = new Image();
+      primaryImage.decoding = "async";
+      primaryImage.fetchPriority = "high";
+      primaryImage.src = isMobileViewport
+        ? toProjectXXSWebpFromMediaPath(primaryProjectMedia)
+        : toProjectXSWebpFromMediaPath(primaryProjectMedia);
+    }
+
+    if (!shouldWarmOtherProjects) {
+      return undefined;
+    }
+
     const firstProjectMedia = Object.values(PROJECT_GALLERIES)
       .map((gallery) => gallery?.[0])
-      .filter(Boolean);
+      .filter((mediaPath) => Boolean(mediaPath) && mediaPath !== primaryProjectMedia);
 
     const warmFirstProjectMedia = () => {
       firstProjectMedia.forEach((mediaPath) => {
@@ -3133,7 +3184,7 @@ function App() {
         >
           <span className="brand-text">
             <span className="brand-short">BM</span>
-            <span className="brand-full">billal Mechekour</span>
+            <span className="brand-full">Billal Mechekour</span>
           </span>
         </a>
         <nav className="topnav">
@@ -3305,6 +3356,7 @@ function App() {
                     projectCategories
                       .slice(0, categoryIndex)
                       .reduce((sum, item) => sum + item.projects.length, 0) + index;
+                  const isPrimaryProjectCard = globalIndex === 0;
                   const isReverse = globalIndex % 2 === 1;
                   const screenshot = PROJECT_SCREENSHOTS[project.name];
                   const gallery = PROJECT_GALLERIES[project.name] || (screenshot ? [screenshot] : []);
@@ -3363,18 +3415,18 @@ function App() {
                           {mainScreenshot ? (
                             <picture>
                               <source
-                                srcSet={`${toProjectSmallWebpFromMediaPath(mainScreenshot)} 1024w, ${toProjectWebpFromMediaPath(mainScreenshot)} 1600w`}
-                                sizes="(max-width: 760px) 92vw, (max-width: 1100px) 84vw, 48vw"
+                                srcSet={`${toProjectXXSWebpFromMediaPath(mainScreenshot)} 480w, ${toProjectXSWebpFromMediaPath(mainScreenshot)} 768w, ${toProjectSmallWebpFromMediaPath(mainScreenshot)} 1024w, ${toProjectWebpFromMediaPath(mainScreenshot)} 1600w`}
+                                sizes="(max-width: 560px) 94vw, (max-width: 760px) 90vw, (max-width: 1100px) 84vw, 48vw"
                                 type="image/webp"
                               />
                               <img
-                                src={toProjectSmallMediaPath(mainScreenshot)}
-                                srcSet={`${toProjectSmallMediaPath(mainScreenshot)} 1024w, ${mainScreenshot} 1600w`}
-                                sizes="(max-width: 760px) 92vw, (max-width: 1100px) 84vw, 48vw"
+                                src={toProjectXXSMediaPath(mainScreenshot)}
+                                srcSet={`${toProjectXXSMediaPath(mainScreenshot)} 480w, ${toProjectXSMediaPath(mainScreenshot)} 768w, ${toProjectSmallMediaPath(mainScreenshot)} 1024w, ${mainScreenshot} 1600w`}
+                                sizes="(max-width: 560px) 94vw, (max-width: 760px) 90vw, (max-width: 1100px) 84vw, 48vw"
                                 alt={`Capture d'écran du projet ${project.name}`}
-                                loading="lazy"
-                                decoding="async"
-                                fetchPriority="low"
+                                loading={isPrimaryProjectCard ? "eager" : "lazy"}
+                                decoding={isPrimaryProjectCard ? "sync" : "async"}
+                                fetchPriority={isPrimaryProjectCard ? "high" : "low"}
                                 width="1600"
                                 height="900"
                               />
