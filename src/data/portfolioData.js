@@ -56,7 +56,7 @@ export const projectCategories = [
           "Application dédiée au coaching sportif: suivi des athlètes, programmes personnalisés et progression physique.",
         impact:
           "Projet personnel en cours de développement pour un accompagnement régulier et des résultats durables.",
-        stack: ["React 18", "Vite 5", "Tailwind CSS", "LocalStorage", "Vercel"],
+        stack: ["React 18", "Vite 5", "Tailwind CSS"],
         isPrivate: true,
         liveUrl: "https://coach-sport-app.vercel.app/",
       },
@@ -83,7 +83,7 @@ export const skills = [
   },
   {
     group: "Web",
-    items: ["React", "Next.js", "Node.js", "Express.js", "EJS", "Tailwind CSS"],
+    items: ["React", "Vue.js", "Next.js", "Node.js", "Express.js", "EJS", "Tailwind CSS", "Bootstrap"],
   },
   {
     group: "Données",

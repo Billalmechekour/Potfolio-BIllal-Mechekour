@@ -792,6 +792,84 @@ const EXPERIENCE_METRICS = {
   ],
 };
 
+const CHATBOT_PERSONAL_INFO = {
+  fr: {
+    identity:
+      "Billal Mechekour est un homme algérien et étudiant en informatique à l'UPJV (2025-2026). Il a obtenu sa licence en Système d'information en Algérie et validé également sa première année de Master en Génie logiciel.",
+    firstName: "Billal",
+    lastName: "Mechekour",
+    country: "Algérie",
+    residence: "Amiens, France",
+    birthPlace: "Akbou, Béjaïa, Algérie",
+    birthDate: "05/04/2003",
+    age: "23 ans",
+    internshipLocation: "Laboratoire EPROAD, Amiens, France",
+    license3:
+      "En cours: Licence 3 Informatique à l'UPJV (Amiens, France). Licence obtenue aussi à l'Université de Béjaïa, Algérie.",
+    master: "Master 1 en Génie logiciel à l'Université de Béjaïa, Algérie.",
+    license2: "Licence 2 à l'Université de Béjaïa, Algérie.",
+    license1: "Licence 1 à l'Université de Béjaïa, Algérie.",
+    baccalaureateSchool: "Lycée Ait Doued Hocine, Béjaïa, Algérie.",
+    baccalaureateMention: "Bien",
+    baccalaureateAverage: "15/20",
+    motherTongue: "Kabyle",
+    webExperience: "4 ans",
+    designExperience: "3 ans",
+    projectsCount: "+8",
+    technologiesCount: "Plus de 20",
+  },
+  en: {
+    identity:
+      "Billal Mechekour is an Algerian man and a computer science student at UPJV (2025-2026). He earned his Information Systems bachelor's degree in Algeria and also validated his first year of a Software Engineering master's.",
+    firstName: "Billal",
+    lastName: "Mechekour",
+    country: "Algeria",
+    residence: "Amiens, France",
+    birthPlace: "Akbou, Béjaïa, Algeria",
+    birthDate: "05/04/2003",
+    age: "23 years old",
+    internshipLocation: "EPROAD Laboratory, Amiens, France",
+    license3:
+      "Current: Bachelor Year 3 in Computer Science at UPJV (Amiens, France). He also obtained a bachelor's degree at the University of Béjaïa, Algeria.",
+    master: "Master 1 in Software Engineering at the University of Béjaïa, Algeria.",
+    license2: "Bachelor Year 2 at the University of Béjaïa, Algeria.",
+    license1: "Bachelor Year 1 at the University of Béjaïa, Algeria.",
+    baccalaureateSchool: "Ait Doued Hocine High School, Béjaïa, Algeria.",
+    baccalaureateMention: "Good",
+    baccalaureateAverage: "15/20",
+    motherTongue: "Kabyle",
+    webExperience: "4 years",
+    designExperience: "3 years",
+    projectsCount: "+8",
+    technologiesCount: "More than 20",
+  },
+  ar: {
+    identity:
+      "بلال مشكور شاب جزائري وطالب إعلام آلي في جامعة UPJV (2025-2026). تحصل على ليسانس في نظم المعلومات بالجزائر ونجح كذلك في السنة الأولى ماستر هندسة البرمجيات.",
+    firstName: "Billal",
+    lastName: "Mechekour",
+    country: "الجزائر",
+    residence: "أميان، فرنسا",
+    birthPlace: "أقبو، بجاية، الجزائر",
+    birthDate: "05/04/2003",
+    age: "23 سنة",
+    internshipLocation: "مخبر EPROAD، أميان، فرنسا",
+    license3:
+      "حالياً: ليسانس 3 إعلام آلي في UPJV (أميان، فرنسا). وتحصل أيضاً على ليسانس في جامعة بجاية، الجزائر.",
+    master: "ماستر 1 هندسة البرمجيات في جامعة بجاية، الجزائر.",
+    license2: "ليسانس 2 في جامعة بجاية، الجزائر.",
+    license1: "ليسانس 1 في جامعة بجاية، الجزائر.",
+    baccalaureateSchool: "ثانوية آيت دود حسين، بجاية، الجزائر.",
+    baccalaureateMention: "جيد",
+    baccalaureateAverage: "15/20",
+    motherTongue: "القبائلية",
+    webExperience: "4 سنوات",
+    designExperience: "3 سنوات",
+    projectsCount: "+8",
+    technologiesCount: "أكثر من 20",
+  },
+};
+
 function ContactNetworkIcon({ type }) {
   const iconProps = {
     fill: "none",
@@ -872,6 +950,1697 @@ function ContactNetworkIcon({ type }) {
   return null;
 }
 
+const CHATBOT_UI = {
+  fr: {
+    open: "Ouvrir l'assistant",
+    close: "Fermer",
+    title: "Assistant Billal",
+    subtitle: "Réponses sur mon profil et mes projets",
+    botName: "BM Chatbot",
+    botRole: "Votre Assistant",
+    placeholder: "Ex: Quels sont tes projets ?",
+    send: "Envoyer",
+    typing: "BillalBot écrit...",
+    empty: "Écris une question.",
+    clarify: "Est-ce que tu veux dire : \"{question}\" ?",
+    confirmYesNo: "Réponds par oui ou non.",
+    notUnderstood:
+      "Je n'ai pas compris votre question, essaye de la formuler bien.",
+    welcome:
+      "Salut, je suis l'assistant de Billal. Je peux répondre sur son profil, ses projets, ses compétences, sa formation, son stage et ses contacts.",
+    suggestions: [
+      "Présente-toi",
+      "Quels sont tes projets ?",
+      "Quelles technologies maîtrises-tu ?",
+      "Comment te contacter ?",
+    ],
+    fallback:
+      "Je peux répondre sur: profil, projets, compétences, formation, stage, langues, expérience, CV, contact, pays, résidence, âge, naissance, bac et parcours universitaire.",
+    labels: {
+      profile: "Profil",
+      identity: "Qui est Billal",
+      firstName: "Prénom",
+      lastName: "Nom",
+      projects: "Projets",
+      skills: "Compétences techniques",
+      skillsInGroup: "Compétences en",
+      education: "Formation",
+      internship: "Stage",
+      internshipLocation: "Lieu du stage",
+      license3: "Licence 3",
+      license2: "Licence 2",
+      license1: "Licence 1",
+      master: "Master",
+      baccalaureate: "Baccalauréat",
+      baccalaureateMention: "Mention du bac",
+      baccalaureateAverage: "Moyenne du bac",
+      motherTongue: "Langue maternelle",
+      webExperience: "Expérience web",
+      designExperience: "Expérience design",
+      projectsCount: "Nombre de projets",
+      technologiesCount: "Nombre de technologies",
+      contacts: "Contacts",
+      cv: "CV",
+      cvPreview: "Aperçu du CV",
+      cvDownload: "Télécharger le CV",
+      location: "Localisation",
+      country: "Pays",
+      residence: "Résidence",
+      birthplace: "Lieu de naissance",
+      birthDate: "Date de naissance",
+      age: "Âge",
+      experience: "Expérience",
+      availability: "Disponibilité",
+      stack: "Stack",
+      repo: "GitHub",
+      live: "Live",
+    },
+  },
+  en: {
+    open: "Open assistant",
+    close: "Close",
+    title: "Billal Assistant",
+    subtitle: "Answers about my profile and projects",
+    botName: "BM Chatbot",
+    botRole: "Your Assistant",
+    placeholder: "Ex: What projects did you build?",
+    send: "Send",
+    typing: "BillalBot is typing...",
+    empty: "Type a question.",
+    clarify: "Do you mean: \"{question}\"?",
+    confirmYesNo: "Please answer with yes or no.",
+    notUnderstood: "I didn't understand your question, please rephrase it clearly.",
+    welcome:
+      "Hi, I'm Billal's assistant. I can answer questions about his profile, projects, skills, education, internship, and contact links.",
+    suggestions: [
+      "Introduce yourself",
+      "What are your projects?",
+      "What technologies do you master?",
+      "How can I contact you?",
+    ],
+    fallback:
+      "I can answer about: profile, projects, skills, education, internship, languages, experience, CV, contact, country, residence, age, birthplace, baccalaureate, and academic path.",
+    labels: {
+      profile: "Profile",
+      identity: "Who is Billal",
+      firstName: "First name",
+      lastName: "Last name",
+      projects: "Projects",
+      skills: "Technical skills",
+      skillsInGroup: "Skills in",
+      education: "Education",
+      internship: "Internship",
+      internshipLocation: "Internship location",
+      license3: "Bachelor Year 3",
+      license2: "Bachelor Year 2",
+      license1: "Bachelor Year 1",
+      master: "Master",
+      baccalaureate: "Baccalaureate",
+      baccalaureateMention: "Baccalaureate mention",
+      baccalaureateAverage: "Baccalaureate average",
+      motherTongue: "Mother tongue",
+      webExperience: "Web experience",
+      designExperience: "Design experience",
+      projectsCount: "Projects count",
+      technologiesCount: "Technologies count",
+      contacts: "Contact",
+      cv: "CV",
+      cvPreview: "CV preview",
+      cvDownload: "Download CV",
+      location: "Location",
+      country: "Country",
+      residence: "Residence",
+      birthplace: "Birthplace",
+      birthDate: "Birth date",
+      age: "Age",
+      experience: "Experience",
+      availability: "Availability",
+      stack: "Stack",
+      repo: "GitHub",
+      live: "Live",
+    },
+  },
+  ar: {
+    open: "فتح المساعد",
+    close: "إغلاق",
+    title: "مساعد بلال",
+    subtitle: "إجابات حول الملف والمشاريع",
+    botName: "BM Chatbot",
+    botRole: "مساعدك",
+    placeholder: "مثال: ما هي مشاريعك؟",
+    send: "إرسال",
+    typing: "BillalBot يكتب...",
+    empty: "اكتب سؤالك.",
+    clarify: "هل تقصد: \"{question}\"؟",
+    confirmYesNo: "يرجى الرد بنعم أو لا.",
+    notUnderstood: "لم أفهم سؤالك، حاول إعادة صياغته بشكل أوضح.",
+    welcome:
+      "مرحباً، أنا مساعد بلال. أستطيع الإجابة عن ملفه، مشاريعه، مهاراته، تكوينه، تربصه ووسائل التواصل.",
+    suggestions: [
+      "عرفني بنفسك",
+      "ما هي مشاريعك؟",
+      "ما هي التقنيات التي تتقنها؟",
+      "كيف أتواصل معك؟",
+    ],
+    fallback:
+      "أستطيع الإجابة عن: الملف، المشاريع، المهارات، التكوين، التربص، اللغات، الخبرة، السيرة الذاتية، التواصل، البلد، الإقامة، العمر، الميلاد، البكالوريا، والمسار الجامعي.",
+    labels: {
+      profile: "الملف",
+      identity: "من هو بلال",
+      firstName: "الاسم",
+      lastName: "اللقب",
+      projects: "المشاريع",
+      skills: "المهارات التقنية",
+      skillsInGroup: "مهارات",
+      education: "التكوين",
+      internship: "التربص",
+      internshipLocation: "مكان التربص",
+      license3: "ليسانس 3",
+      license2: "ليسانس 2",
+      license1: "ليسانس 1",
+      master: "الماستر",
+      baccalaureate: "البكالوريا",
+      baccalaureateMention: "تقدير البكالوريا",
+      baccalaureateAverage: "معدل البكالوريا",
+      motherTongue: "اللغة الأم",
+      webExperience: "خبرة الويب",
+      designExperience: "خبرة التصميم",
+      projectsCount: "عدد المشاريع",
+      technologiesCount: "عدد التقنيات",
+      contacts: "التواصل",
+      cv: "السيرة الذاتية",
+      cvPreview: "معاينة السيرة الذاتية",
+      cvDownload: "تحميل السيرة الذاتية",
+      location: "الموقع",
+      country: "البلد",
+      residence: "الإقامة",
+      birthplace: "مكان الميلاد",
+      birthDate: "تاريخ الميلاد",
+      age: "العمر",
+      experience: "الخبرة",
+      availability: "التوفر",
+      stack: "التقنيات",
+      repo: "GitHub",
+      live: "Live",
+    },
+  },
+};
+
+const PROJECT_ALIASES = {
+  "mega-shop": ["mega shop", "megashop", "mega-shop", "mega", "shop"],
+  Shifa: ["shifa", "chifa", "shifaa"],
+  "algo-game": ["algo game", "algo-game", "algogame", "algo", "game"],
+  "coach-sport-app": ["coach sport", "coach app", "coach-sport-app", "coachsport"],
+  "Béjaïa Tour Guide": [
+    "bejaia",
+    "bejai",
+    "bejaia tour guide",
+    "bejaia guide",
+    "bejaia touguide",
+    "bejai tour guide",
+    "béjaïa",
+    "tour guide",
+    "guide touristique",
+  ],
+};
+
+const PROJECT_CHATBOT_DETAILS = {
+  "algo-game": {
+    title: "Algo Game",
+    description:
+      "Jeu en réseau multijoueur qui permet à jusqu'à 4 joueurs de s'affronter dans des défis d'algorithmique. Les participants répondent à des questions Flash et Code sous la pression d'un chronomètre décroissant, ce qui renforce la motivation et l'enthousiasme. À la fin, un classement est affiché et le gagnant est désigné.",
+    technologies: {
+      Frontend: ["React 19", "Vite 7"],
+      "UI/CSS": ["Tailwind CSS", "PostCSS", "Autoprefixer"],
+      Backend: ["Node.js (modules ES)"],
+      "Temps reel": ["WebSocket (librairie ws)"],
+      Utilitaires: ["nanoid (IDs/codes)"],
+      "Qualite code": ["ESLint"],
+      "Gestion paquets": ["npm (client + serveur)"],
+      "Validation code": ["Python, Java, C, C++ (compilation/validation cote serveur)"],
+    },
+  },
+  Shifa: {
+    title: "Shifa",
+    description:
+      "Application web de gestion des rendez-vous medicaux qui permet aux patients de reserver facilement une consultation pour eux-memes ou leurs enfants. Elle aide a organiser les dates et horaires, reduit la surcharge a l'accueil, et propose des espaces dedies pour secretaires et medecins afin d'assurer un meilleur suivi.",
+    technologies: {
+      Backend: ["Node.js", "Express.js"],
+      Templates: ["EJS"],
+      "Base de donnees": ["MySQL / MariaDB via mysql2"],
+      Sessions: ["express-session"],
+      Securite: ["bcrypt"],
+      Validation: ["express-validator"],
+      Email: ["nodemailer (SMTP Gmail)"],
+      Config: ["dotenv"],
+      Frontend: ["HTML", "CSS", "Bootstrap", "Font Awesome (CDN)"],
+      Dev: ["nodemon"],
+      Architecture: ["Server-side rendering (pas React/Vue/Angular)"],
+    },
+  },
+  "mega-shop": {
+    title: "Mega Shop",
+    description:
+      "Application web d'achat et de vente en ligne avec trois roles principaux: client, vendeur et administrateur. Le client peut acheter, puis devenir vendeur en creant sa boutique. Chaque vendeur gere ses produits et ses ventes, tandis que l'administrateur peut aussi proposer des produits et superviser l'activite globale.",
+    technologies: {
+      Frontend: ["Next.js 15", "React 19", "TypeScript"],
+      "UI/CSS": [
+        "Tailwind CSS v4",
+        "tailwindcss-animate",
+        "@tailwindcss/typography",
+        "shadcn/ui",
+        "Radix UI",
+        "Lucide",
+      ],
+      "Etat global": ["Redux Toolkit", "react-redux", "redux-persist"],
+      Auth: ["NextAuth v5 (credentials)", "bcryptjs"],
+      "Base de donnees": ["Prisma ORM", "MySQL"],
+      Formulaires: ["React Hook Form", "Zod"],
+      "Animation/UX": ["Framer Motion", "Sonner"],
+      Data: ["Recharts", "xlsx"],
+      "Autres": ["PWA via manifest"],
+    },
+  },
+  "coach-sport-app": {
+    title: "Coach Sport App",
+    description:
+      "Application dediee au coaching sportif pour suivre les athletes en ligne, proposer des programmes personnalises et assurer un suivi regulier de la progression physique.",
+    technologies: {
+      Frontend: ["React 18", "JavaScript", "JSX"],
+      Build: ["Vite 5", "@vitejs/plugin-react"],
+      "UI/CSS": ["Tailwind CSS 3", "PostCSS", "Autoprefixer"],
+      Architecture: ["Front-end uniquement (pas de backend/API detecte)"],
+    },
+  },
+  "Béjaïa Tour Guide": {
+    title: "Béjaïa Tour Guide",
+    description:
+      "Application web dediee a la decouverte et a la valorisation du patrimoine naturel et historique de la wilaya de Bejaia. Les utilisateurs explorent les sites, accedent a des contenus culturels, interagissent via likes/commentaires et sauvegardent des favoris.",
+    technologies: {
+      Frontend: ["Vue 3", "Vue Router"],
+      Langages: ["JavaScript", "CSS"],
+      Build: ["Vite", "@vitejs/plugin-vue"],
+      Services: ["Firebase (Firestore + Auth Google)"],
+      Cartographie: ["Leaflet", "OpenStreetMap"],
+      "UI libs": ["vue3-toastify", "@kalimahapps/vue-icons"],
+    },
+  },
+};
+
+const PROJECT_QUERY_KEYWORDS = {
+  description: ["description", "presentation", "présentation", "c est quoi", "details", "détails"],
+  technologies: ["technologie", "technologies", "stack", "utilise", "utilisé", "utulise", "framework"],
+  frontend: ["front", "frontend", "client", "ui"],
+  backend: ["back", "backend", "serveur", "server"],
+  database: ["base de donnees", "base de donnes", "database", "db", "mysql", "postgres", "mongodb", "oracle"],
+  links: ["lien", "link", "url", "repo", "github", "live", "demo", "démo", "prototype"],
+  github: ["github", "git hub", "repo"],
+  live: ["live", "demo", "démo"],
+  prototype: ["prototype", "figma", "proto"],
+};
+
+const CHATBOT_KEYWORDS = {
+  greeting: [
+    "bonjour",
+    "salut",
+    "hello",
+    "hi",
+    "salam",
+    "مرحبا",
+    "السلام",
+  ],
+  identity: [
+    "qui est bilal",
+    "c est qui bilal",
+    "quel est bilal",
+    "parle moi de bilal",
+    "presentes moi bilal",
+    "who is bilal",
+    "tell me about bilal",
+    "about bilal",
+    "من هو بلال",
+    "عرفني بلال",
+    "عرفني ببلال",
+    "بلال من",
+  ],
+  profile: [
+    "profil",
+    "profile",
+    "present",
+    "présente",
+    "introduce",
+    "about you",
+    "qui es tu",
+    "who are you",
+    "من انت",
+    "عرفني",
+  ],
+  country: [
+    "pays",
+    "nationalite",
+    "nationalité",
+    "originaire",
+    "country",
+    "nationality",
+    "from which country",
+    "which country",
+    "من اي بلد",
+    "من أي بلد",
+    "البلد",
+    "دولة",
+  ],
+  residence: [
+    "residence",
+    "résidence",
+    "habite",
+    "ou habite",
+    "where do you live",
+    "where he lives",
+    "live",
+    "reside",
+    "resides",
+    "يسكن",
+    "أين يعيش",
+    "اين يعيش",
+    "الاقامة",
+    "الإقامة",
+  ],
+  age: [
+    "age",
+    "âge",
+    "how old",
+    "old is",
+    "quel age",
+    "quel âge",
+    "العمر",
+    "كم عمر",
+    "سنه",
+    "سنة",
+  ],
+  birthdate: [
+    "date de naissance",
+    "nee quand",
+    "né quand",
+    "naissance quand",
+    "birth date",
+    "date of birth",
+    "when born",
+    "تاريخ الميلاد",
+    "متى ولد",
+  ],
+  stageLocation: [
+    "ou effectue stage",
+    "où effectue stage",
+    "ou fait stage",
+    "où fait stage",
+    "lieu stage",
+    "stage ou",
+    "where internship",
+    "internship where",
+    "مكان التربص",
+    "وين تربص",
+  ],
+  birthplace: [
+    "ne ou",
+    "né ou",
+    "né à",
+    "naissance",
+    "lieu de naissance",
+    "born",
+    "birthplace",
+    "birth place",
+    "where was born",
+    "akbou",
+    "مكان الميلاد",
+    "مولود",
+    "من مواليد",
+  ],
+  license3: ["licence 3", "license 3", "l3", "upjv", "licene 3"],
+  master: ["master", "master 1", "m1", "genie logiciel", "génie logiciel"],
+  license2: ["licence 2", "license 2", "l2"],
+  license1: ["licence 1", "license 1", "l1"],
+  baccalaureate: ["bac", "baccalaureat", "baccalauréat", "lycee", "lycée"],
+  bacMention: ["mention bac", "mention du bac", "mention", "tres bien", "très bien", "bien"],
+  bacAverage: ["moyenne bac", "moyenne du bac", "moyen bac", "15", "15 20"],
+  motherTongue: ["langue maternelle", "maternel", "mother tongue", "native language", "kabyle"],
+  webExperience: ["experience web", "developpement web", "développement web", "web experience"],
+  designExperience: ["experience design", "design ui", "ui ux", "ux ui", "design experience"],
+  projectsCount: ["nombre projets", "combien projets", "how many projects", "عدد المشاريع"],
+  technologiesCount: [
+    "nombre technologies",
+    "combien technologies",
+    "how many technologies",
+    "plus de 20",
+    "عدد التقنيات",
+  ],
+  projects: ["projet", "projects", "project", "portfolio", "realisation", "المشاريع", "مشروع"],
+  skills: [
+    "competence",
+    "compétence",
+    "skills",
+    "skill",
+    "technologie",
+    "technology",
+    "stack",
+    "المهارات",
+    "تقنيات",
+  ],
+  education: [
+    "formation",
+    "education",
+    "etude",
+    "étude",
+    "universite",
+    "université",
+    "diplome",
+    "diplôme",
+    "التكوين",
+    "الدراسة",
+    "جامعة",
+  ],
+  internship: ["stage", "internship", "eproad", "quantique", "quantum", "التربص", "تدريب"],
+  languages: ["langue", "langues", "language", "languages", "اللغات", "لغة", "kabyle", "arab"],
+  cv: ["cv", "resume", "résumé", "curriculum", "السيرة", "سيرة"],
+  cvDisplay: [
+    "affiche cv",
+    "afficher cv",
+    "consulter cv",
+    "voir cv",
+    "montre cv",
+    "show cv",
+    "view cv",
+    "open cv",
+    "عرض السيرة",
+    "اظهر السيرة",
+  ],
+  location: ["ville", "city", "location", "where", "amiens", "bejaia", "béjaïa", "المدينة", "اين", "أين"],
+  experience: ["experience", "expérience", "years", "ans", "خبرة", "سنوات"],
+  availability: ["disponible", "available", "mission", "alternance", "متاح", "فرص"],
+};
+
+const CHATBOT_CONFIRMATION = {
+  fr: {
+    yes: ["oui", "ouii", "ouais", "bien sur", "d accord", "ok", "yes", "yep"],
+    no: ["non", "nan", "pas", "no", "nope"],
+  },
+  en: {
+    yes: ["yes", "yeah", "yep", "sure", "ok", "okay"],
+    no: ["no", "nope", "not"],
+  },
+  ar: {
+    yes: ["نعم", "اي", "أيوه", "ايوه", "yes", "oui"],
+    no: ["لا", "مو", "ليس", "no", "non"],
+  },
+};
+
+const SKILL_GROUP_ALIASES = {
+  Langages: ["langage", "langages", "languages", "programming", "code", "javascript", "python"],
+  Web: ["web", "frontend", "backend", "full stack", "fullstack", "react", "vue", "node"],
+  "Données": [
+    "donnees",
+    "données",
+    "donnes",
+    "database",
+    "base de donnees",
+    "base de donnes",
+    "base donnes",
+    "sql",
+    "postgres",
+    "postgresql",
+    "mongodb",
+    "oracle",
+  ],
+  "Big Data": ["big data", "hadoop", "hive"],
+  "Outils & Design": ["outils", "design", "tools", "figma", "photoshop", "illustrator", "canva", "git"],
+  "Méthodologies": ["methodologie", "méthodologie", "methodologies", "agile", "dsdm", "ui ux", "ux ui"],
+};
+
+const CHATBOT_INTENT_PHRASES = {
+  fr: [
+    { intent: "identity", phrases: ["qui est bilal", "c qui bilal", "parle moi de bilal"] },
+    {
+      intent: "birthdate",
+      phrases: ["bilal est ne quand", "date de naissance de bilal", "bilal nee quand"],
+    },
+    { intent: "country", phrases: ["bilal de quel pays", "quel pays", "nationalite de bilal"] },
+    { intent: "residence", phrases: ["bilal habite ou", "ou habite bilal", "residence de bilal"] },
+    { intent: "age", phrases: ["quel age a bilal", "age de bilal"] },
+    { intent: "birthplace", phrases: ["bilal est ne ou", "lieu de naissance de bilal"] },
+  ],
+  en: [
+    { intent: "identity", phrases: ["who is bilal", "tell me about bilal"] },
+    { intent: "birthdate", phrases: ["when was bilal born", "billal birth date"] },
+    { intent: "country", phrases: ["which country is bilal from", "bilal nationality"] },
+    { intent: "residence", phrases: ["where does bilal live", "bilal residence"] },
+    { intent: "age", phrases: ["how old is bilal", "bilal age"] },
+    { intent: "birthplace", phrases: ["where was bilal born", "bilal birthplace"] },
+  ],
+  ar: [
+    { intent: "identity", phrases: ["من هو بلال", "عرفني بلال"] },
+    { intent: "birthdate", phrases: ["متى ولد بلال", "تاريخ ميلاد بلال"] },
+    { intent: "country", phrases: ["بلال من اي بلد", "جنسية بلال"] },
+    { intent: "residence", phrases: ["اين يعيش بلال", "اقامة بلال"] },
+    { intent: "age", phrases: ["كم عمر بلال", "عمر بلال"] },
+    { intent: "birthplace", phrases: ["اين ولد بلال", "مكان ميلاد بلال"] },
+  ],
+};
+
+const CHATBOT_CLARIFICATION_QUESTIONS = {
+  fr: {
+    identity: "Qui est Bilal ?",
+    birthdate: "Bilal est né quand ?",
+    country: "Bilal est de quel pays ?",
+    residence: "Bilal habite où ?",
+    age: "Quel âge a Bilal ?",
+    birthplace: "Bilal est né où ?",
+  },
+  en: {
+    identity: "Who is Billal?",
+    birthdate: "When was Billal born?",
+    country: "Which country is Billal from?",
+    residence: "Where does Billal live?",
+    age: "How old is Billal?",
+    birthplace: "Where was Billal born?",
+  },
+  ar: {
+    identity: "من هو بلال؟",
+    birthdate: "متى ولد بلال؟",
+    country: "بلال من أي بلد؟",
+    residence: "أين يعيش بلال؟",
+    age: "كم عمر بلال؟",
+    birthplace: "بلال مولود فين؟",
+  },
+};
+
+const CONTACT_TYPE_KEYWORDS = {
+  facebook: ["facebook", "فيسبوك"],
+  instagram: ["instagram", "insta", "انستغرام", "إنستغرام"],
+  email: ["email", "mail", "gmail", "البريد"],
+  whatsapp: ["whatsapp", "واتساب", "phone", "telephone", "téléphone", "رقم"],
+  github: ["github", "git hub", "جيت هاب"],
+  linkedin: ["linkedin", "لينكد", "لينكدإن"],
+};
+
+const createMessageId = () =>
+  `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+
+const normalizeText = (value) =>
+  value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9\u0600-\u06ff\s-]/gi, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+const tokenize = (value) =>
+  normalizeText(value)
+    .replace(/[-_]/g, " ")
+    .split(" ")
+    .filter(Boolean);
+
+const hasKeyword = (normalizedMessage, keywords) => {
+  const tokens = tokenize(normalizedMessage);
+
+  return keywords.some((keyword) => {
+    const normalizedKeyword = normalizeText(keyword);
+    if (!normalizedKeyword) {
+      return false;
+    }
+
+    if (normalizedKeyword.includes(" ")) {
+      return normalizedMessage.includes(normalizedKeyword);
+    }
+
+    return tokens.some((token) => {
+      if (token === normalizedKeyword) {
+        return true;
+      }
+
+      if (normalizedKeyword.length >= 4 && token.startsWith(normalizedKeyword)) {
+        return true;
+      }
+
+      return false;
+    });
+  });
+};
+
+const levenshteinDistance = (source, target) => {
+  const a = source || "";
+  const b = target || "";
+
+  if (!a.length) {
+    return b.length;
+  }
+  if (!b.length) {
+    return a.length;
+  }
+
+  const matrix = Array.from({ length: b.length + 1 }, () => Array(a.length + 1).fill(0));
+
+  for (let i = 0; i <= b.length; i += 1) {
+    matrix[i][0] = i;
+  }
+  for (let j = 0; j <= a.length; j += 1) {
+    matrix[0][j] = j;
+  }
+
+  for (let i = 1; i <= b.length; i += 1) {
+    for (let j = 1; j <= a.length; j += 1) {
+      const cost = b[i - 1] === a[j - 1] ? 0 : 1;
+      matrix[i][j] = Math.min(
+        matrix[i - 1][j] + 1,
+        matrix[i][j - 1] + 1,
+        matrix[i - 1][j - 1] + cost
+      );
+    }
+  }
+
+  return matrix[b.length][a.length];
+};
+
+const similarityScore = (source, target) => {
+  if (!source || !target) {
+    return 0;
+  }
+
+  const distance = levenshteinDistance(source, target);
+  const maxLength = Math.max(source.length, target.length);
+  if (!maxLength) {
+    return 1;
+  }
+
+  return 1 - distance / maxLength;
+};
+
+const hasApproxToken = (tokens, dictionary, maxDistance = 2) =>
+  tokens.some((token) =>
+    dictionary.some((word) => {
+      const normalizedWord = normalizeText(word);
+      if (token === normalizedWord) {
+        return true;
+      }
+      if (token.length <= 2 || normalizedWord.length <= 2) {
+        return false;
+      }
+      return levenshteinDistance(token, normalizedWord) <= maxDistance;
+    })
+  );
+
+const detectConfirmation = (message, language) => {
+  const normalized = normalizeText(message);
+  const phrases = CHATBOT_CONFIRMATION[language];
+
+  if (hasKeyword(normalized, phrases.yes)) {
+    return "yes";
+  }
+
+  if (hasKeyword(normalized, phrases.no)) {
+    return "no";
+  }
+
+  return null;
+};
+
+const hasTokenNumber = (tokens, numberValue) =>
+  tokens.includes(String(numberValue)) || tokens.includes(`l${numberValue}`);
+
+const detectPersonalIntent = (normalizedMessage) => {
+  const tokens = tokenize(normalizedMessage);
+  const asksFirstName =
+    hasKeyword(normalizedMessage, ["prenom", "prénom", "first name", "given name"]) ||
+    (tokens.includes("prenom") || tokens.includes("prénom"));
+  const asksLastName =
+    hasKeyword(normalizedMessage, ["nom", "last name", "family name", "surname", "nom famille"]) ||
+    tokens.includes("nom");
+
+  const asksWhere = hasApproxToken(tokens, ["ou", "où", "where", "وين", "اين", "أين", "lieu"], 2);
+  const mentionsStage = hasApproxToken(tokens, ["stage", "internship", "tربص", "تربص", "تدريب"], 2);
+  const mentionsLicense = hasApproxToken(tokens, ["licence", "license", "licene", "ليسانس"], 2);
+  const mentionsMaster = hasApproxToken(tokens, ["master", "m1", "ماستر"], 2);
+  const mentionsBac =
+    hasKeyword(normalizedMessage, ["bac", "baccalaureat", "baccalauréat", "بكالوريا"]) ||
+    normalizedMessage.includes("baccalaureat");
+  const mentionsMention = hasApproxToken(tokens, ["mention", "tقدير", "تقدير"], 2);
+  const mentionsAverage = hasApproxToken(tokens, ["moyenne", "average", "moyen", "معدل"], 2);
+  const mentionsExperience = hasApproxToken(tokens, ["experience", "expérience", "خبرة"], 2);
+  const mentionsWeb = hasApproxToken(tokens, ["web", "developpement", "développement", "development"], 2);
+  const mentionsDesign = hasApproxToken(tokens, ["design", "ui", "ux"], 2);
+  const mentionsCount = hasApproxToken(tokens, ["nombre", "combien", "how", "many", "عدد"], 2);
+  const mentionsProjects = hasApproxToken(tokens, ["projet", "projects", "project", "مشاريع", "مشروع"], 2);
+  const mentionsTechnologies = hasApproxToken(
+    tokens,
+    ["technologie", "technologies", "techno", "tech", "تقنيات", "تقنية"],
+    2
+  );
+
+  if (asksFirstName) {
+    return "firstName";
+  }
+
+  if (asksLastName) {
+    return "lastName";
+  }
+
+  if (mentionsStage && (asksWhere || hasApproxToken(tokens, ["effectue", "effectuer", "fait"], 2))) {
+    return "stageLocation";
+  }
+
+  if (mentionsLicense && (hasTokenNumber(tokens, 3) || hasApproxToken(tokens, ["l3", "upjv"], 1))) {
+    return "license3";
+  }
+
+  if (mentionsMaster) {
+    return "master";
+  }
+
+  if (mentionsLicense && hasTokenNumber(tokens, 2)) {
+    return "license2";
+  }
+
+  if (mentionsLicense && hasTokenNumber(tokens, 1)) {
+    return "license1";
+  }
+
+  if (mentionsBac && mentionsMention) {
+    return "bacMention";
+  }
+
+  if (mentionsBac && mentionsAverage) {
+    return "bacAverage";
+  }
+
+  if (mentionsBac || hasApproxToken(tokens, ["lycee", "lycée", "ثانوية"], 2)) {
+    return "baccalaureate";
+  }
+
+  if (
+    normalizedMessage.includes("kabyle") ||
+    (hasApproxToken(tokens, ["langue", "language", "لغة"], 2) &&
+      hasApproxToken(tokens, ["maternelle", "maternel", "native", "أم", "الام", "الأم"], 2))
+  ) {
+    return "motherTongue";
+  }
+
+  if (mentionsExperience && mentionsWeb) {
+    return "webExperience";
+  }
+
+  if (mentionsExperience && mentionsDesign) {
+    return "designExperience";
+  }
+
+  if (mentionsCount && mentionsProjects) {
+    return "projectsCount";
+  }
+
+  if (mentionsCount && mentionsTechnologies) {
+    return "technologiesCount";
+  }
+
+  return null;
+};
+
+const isSkillsIntent = (normalizedMessage) => {
+  const tokens = tokenize(normalizedMessage);
+  const hasCompetenceHint = tokens.some(
+    (token) => token.includes("compet") || token.includes("skill") || token.includes("maitri")
+  );
+
+  return (
+    hasKeyword(normalizedMessage, CHATBOT_KEYWORDS.skills) ||
+    hasCompetenceHint ||
+    hasApproxToken(tokens, ["competence", "compétence", "skills", "skill", "technologie", "maitrise", "connais"], 2)
+  );
+};
+
+const detectSkillGroupFromMessage = (normalizedMessage) => {
+  const tokens = tokenize(normalizedMessage);
+
+  for (const [group, aliases] of Object.entries(SKILL_GROUP_ALIASES)) {
+    const found = aliases.some((alias) => {
+      const normalizedAlias = normalizeText(alias);
+      if (!normalizedAlias) {
+        return false;
+      }
+
+      if (normalizedAlias.includes(" ")) {
+        return normalizedMessage.includes(normalizedAlias);
+      }
+
+      return (
+        tokens.includes(normalizedAlias) ||
+        hasApproxToken(tokens, [normalizedAlias], 2)
+      );
+    });
+
+    if (found) {
+      return group;
+    }
+  }
+
+  return null;
+};
+
+const detectProjectQueryNeeds = (normalizedMessage) => {
+  const tokens = tokenize(normalizedMessage);
+  const hasToken = (list) => hasKeyword(normalizedMessage, list) || hasApproxToken(tokens, list, 2);
+
+  const wantsDescription = hasToken(PROJECT_QUERY_KEYWORDS.description);
+  const wantsTechnologies = hasToken(PROJECT_QUERY_KEYWORDS.technologies);
+  const wantsFrontend = hasToken(PROJECT_QUERY_KEYWORDS.frontend);
+  const wantsBackend = hasToken(PROJECT_QUERY_KEYWORDS.backend);
+  const wantsDatabase = hasToken(PROJECT_QUERY_KEYWORDS.database);
+  const wantsLinks = hasToken(PROJECT_QUERY_KEYWORDS.links);
+  const wantsGithub = hasToken(PROJECT_QUERY_KEYWORDS.github);
+  const wantsLive = hasToken(PROJECT_QUERY_KEYWORDS.live);
+  const wantsPrototype = hasToken(PROJECT_QUERY_KEYWORDS.prototype);
+
+  return {
+    wantsDescription,
+    wantsTechnologies,
+    wantsFrontend,
+    wantsBackend,
+    wantsDatabase,
+    wantsLinks,
+    wantsGithub,
+    wantsLive,
+    wantsPrototype,
+  };
+};
+
+const getProjectByMessage = (normalizedMessage) => {
+  const entries = Object.entries(PROJECT_ALIASES);
+  for (const [projectName, aliases] of entries) {
+    if (aliases.some((alias) => normalizedMessage.includes(normalizeText(alias)))) {
+      return projectCategories
+        .flatMap((category) => category.projects)
+        .find((project) => project.name === projectName);
+    }
+  }
+  return null;
+};
+
+const formatMetric = (metric) =>
+  `${metric.prefix || ""}${metric.value}${metric.suffix ? ` ${metric.suffix}` : ""} ${metric.label}`;
+
+const buildProjectLinksAnswer = (project, language, needs) => {
+  const ui = CHATBOT_UI[language];
+  const text = TEXTS[language];
+
+  const repoText = project.githubUrl
+    ? `${ui.labels.repo}: ${project.githubUrl}`
+    : `${ui.labels.repo}: ${text.projects.githubPrivate}`;
+
+  const liveText = project.liveUrl
+    ? `${ui.labels.live}: ${project.liveUrl}`
+    : `${ui.labels.live}: ${text.projects.noDemo}`;
+
+  const prototypeText = project.prototypeUrl
+    ? `Prototype: ${project.prototypeUrl}`
+    : null;
+
+  if (needs.wantsGithub && !needs.wantsLive && !needs.wantsPrototype) {
+    return repoText;
+  }
+
+  if (needs.wantsLive && !needs.wantsGithub && !needs.wantsPrototype) {
+    return liveText;
+  }
+
+  if (needs.wantsPrototype && !needs.wantsGithub && !needs.wantsLive) {
+    return prototypeText || "Prototype: indisponible";
+  }
+
+  const lines = [repoText, liveText];
+  if (prototypeText) {
+    lines.push(prototypeText);
+  }
+  return lines.join("\n");
+};
+
+const buildProjectTechByScope = (details, needs) => {
+  const selectedKeys = [];
+  if (needs.wantsFrontend) {
+    selectedKeys.push("Frontend");
+    selectedKeys.push("UI/CSS");
+  }
+  if (needs.wantsBackend) {
+    selectedKeys.push("Backend");
+    selectedKeys.push("Templates");
+    selectedKeys.push("Auth");
+    selectedKeys.push("Sessions");
+    selectedKeys.push("Validation");
+    selectedKeys.push("Services");
+  }
+  if (needs.wantsDatabase) {
+    selectedKeys.push("Base de donnees");
+  }
+
+  const uniqueKeys = [...new Set(selectedKeys)].filter((key) => details.technologies[key]);
+  if (!uniqueKeys.length) {
+    return null;
+  }
+
+  return uniqueKeys
+    .map((key) => `${key}:\n${details.technologies[key].map((item) => `- ${item}`).join("\n")}`)
+    .join("\n");
+};
+
+const buildProjectAllTech = (details) =>
+  Object.entries(details.technologies)
+    .map(([section, items]) => `${section}:\n${items.map((item) => `- ${item}`).join("\n")}`)
+    .join("\n");
+
+const buildProjectAnswer = (project, language, normalizedMessage) => {
+  const details = PROJECT_CHATBOT_DETAILS[project.name];
+  const needs = detectProjectQueryNeeds(normalizedMessage);
+  const asksLinksOnly =
+    needs.wantsLinks &&
+    !needs.wantsDescription &&
+    !needs.wantsTechnologies &&
+    !needs.wantsFrontend &&
+    !needs.wantsBackend &&
+    !needs.wantsDatabase;
+
+  if (asksLinksOnly || needs.wantsGithub || needs.wantsLive || needs.wantsPrototype) {
+    return `${project.name}\n${buildProjectLinksAnswer(project, language, needs)}`;
+  }
+
+  if (!details) {
+    const projectDescription =
+      PROJECT_COPY[language]?.[project.name]?.description || project.description;
+    const projectImpact =
+      PROJECT_COPY[language]?.[project.name]?.impact || project.impact;
+    return `${project.name}
+${projectDescription}
+${projectImpact}
+${CHATBOT_UI[language].labels.stack}: ${project.stack.join(", ")}
+${buildProjectLinksAnswer(project, language, needs)}`;
+  }
+
+  const sections = [`${details.title}`];
+  const wantsAnyTechScope = needs.wantsFrontend || needs.wantsBackend || needs.wantsDatabase;
+  const wantsTech = needs.wantsTechnologies || wantsAnyTechScope;
+  const wantsDescription = needs.wantsDescription || !wantsTech;
+
+  if (wantsDescription) {
+    sections.push(`Presentation:\n${details.description}`);
+  }
+
+  if (wantsTech) {
+    const scoped = buildProjectTechByScope(details, needs);
+    sections.push(`Technologies:\n${scoped || buildProjectAllTech(details)}`);
+  }
+
+  sections.push(buildProjectLinksAnswer(project, language, needs));
+  return sections.join("\n");
+};
+
+const buildProjectsOverview = (language) => {
+  const ui = CHATBOT_UI[language];
+  const projectLines = projectCategories
+    .map((category) => {
+      const categoryLabel =
+        CATEGORY_TITLES[category.title]?.[language] || category.title;
+      const names = category.projects.map((project) => project.name).join(", ");
+      return `- ${categoryLabel}: ${names}`;
+    })
+    .join("\n");
+
+  return `${ui.labels.projects}:
+${projectLines}`;
+};
+
+const buildSkillsOverview = (language) => {
+  const ui = CHATBOT_UI[language];
+  const lines = skills
+    .map((group) => {
+      const groupLabel = SKILL_GROUP_LABELS[group.group]?.[language] || group.group;
+      return `- ${groupLabel}: ${group.items.join(", ")}`;
+    })
+    .join("\n");
+  return `${ui.labels.skills}:
+${lines}`;
+};
+
+const buildEducationOverview = (language) => {
+  const ui = CHATBOT_UI[language];
+  const list = EDUCATION_BY_LANG[language]
+    .map((item) => `- ${item.period}: ${item.title} — ${item.school}`)
+    .join("\n");
+  return `${ui.labels.education}:
+${list}`;
+};
+
+const buildInternshipOverview = (language) => {
+  const internship = INTERNSHIP_BY_LANG[language];
+  const topics = internship.topics.join("\n");
+  return `${internship.period}
+${internship.subject}
+${topics}
+${internship.location}`;
+};
+
+const buildSkillGroupOverview = (language, groupName) => {
+  const ui = CHATBOT_UI[language];
+  const group = skills.find((item) => item.group === groupName);
+  if (!group) {
+    return buildSkillsOverview(language);
+  }
+
+  const groupLabel = SKILL_GROUP_LABELS[group.group]?.[language] || group.group;
+  return `${ui.labels.skillsInGroup} ${groupLabel}:
+${group.items.join("\n")}`;
+};
+
+const buildPersonalDetailOverview = (language, intent) => {
+  const ui = CHATBOT_UI[language];
+  const personal = CHATBOT_PERSONAL_INFO[language];
+
+  if (intent === "stageLocation") {
+    return `${ui.labels.internshipLocation}: ${personal.internshipLocation}`;
+  }
+
+  if (intent === "firstName") {
+    return `${ui.labels.firstName}: ${personal.firstName}`;
+  }
+
+  if (intent === "lastName") {
+    return `${ui.labels.lastName}: ${personal.lastName}`;
+  }
+
+  if (intent === "license3") {
+    return `${ui.labels.license3}: ${personal.license3}`;
+  }
+
+  if (intent === "master") {
+    return `${ui.labels.master}: ${personal.master}`;
+  }
+
+  if (intent === "license2") {
+    return `${ui.labels.license2}: ${personal.license2}`;
+  }
+
+  if (intent === "license1") {
+    return `${ui.labels.license1}: ${personal.license1}`;
+  }
+
+  if (intent === "baccalaureate") {
+    return `${ui.labels.baccalaureate}: ${personal.baccalaureateSchool}`;
+  }
+
+  if (intent === "bacMention") {
+    return `${ui.labels.baccalaureateMention}: ${personal.baccalaureateMention}`;
+  }
+
+  if (intent === "bacAverage") {
+    return `${ui.labels.baccalaureateAverage}: ${personal.baccalaureateAverage}`;
+  }
+
+  if (intent === "motherTongue") {
+    return `${ui.labels.motherTongue}: ${personal.motherTongue}`;
+  }
+
+  if (intent === "webExperience") {
+    return `${ui.labels.webExperience}: ${personal.webExperience}`;
+  }
+
+  if (intent === "designExperience") {
+    return `${ui.labels.designExperience}: ${personal.designExperience}`;
+  }
+
+  if (intent === "projectsCount") {
+    return `${ui.labels.projectsCount}: ${personal.projectsCount}`;
+  }
+
+  if (intent === "technologiesCount") {
+    return `${ui.labels.technologiesCount}: ${personal.technologiesCount}`;
+  }
+
+  return null;
+};
+
+const buildContactOverview = (language, preferredType = null) => {
+  const ui = CHATBOT_UI[language];
+  const links = CONTACT_LINKS[language];
+
+  if (preferredType) {
+    const match = links.find((item) => item.icon === preferredType);
+    if (match) {
+      return `${match.label}: ${match.value}
+${match.href}`;
+    }
+  }
+
+  const lines = links
+    .map((item) => `- ${item.label}: ${item.value} (${item.href})`)
+    .join("\n");
+
+  return `${ui.labels.contacts}:
+${lines}`;
+};
+
+const buildProfileOverview = (language) => {
+  const ui = CHATBOT_UI[language];
+  const profileCopy = PROFILE_COPY[language];
+  const personal = CHATBOT_PERSONAL_INFO[language];
+  return `${ui.labels.profile}:
+${profile.fullName}
+${profileCopy.headline}
+${ui.labels.country}: ${personal.country}
+${ui.labels.residence}: ${personal.residence}
+${profile.email}`;
+};
+
+const buildIdentityOverview = (language) => {
+  const ui = CHATBOT_UI[language];
+  const personal = CHATBOT_PERSONAL_INFO[language];
+  return `${ui.labels.identity}:
+${personal.identity}
+${ui.labels.country}: ${personal.country}
+${ui.labels.residence}: ${personal.residence}
+${ui.labels.birthplace}: ${personal.birthPlace}
+${ui.labels.birthDate}: ${personal.birthDate}
+${ui.labels.age}: ${personal.age}`;
+};
+
+const buildCountryOverview = (language) => {
+  const ui = CHATBOT_UI[language];
+  return `${ui.labels.country}: ${CHATBOT_PERSONAL_INFO[language].country}`;
+};
+
+const buildResidenceOverview = (language) => {
+  const ui = CHATBOT_UI[language];
+  return `${ui.labels.residence}: ${CHATBOT_PERSONAL_INFO[language].residence}`;
+};
+
+const buildAgeOverview = (language) => {
+  const ui = CHATBOT_UI[language];
+  return `${ui.labels.age}: ${CHATBOT_PERSONAL_INFO[language].age}`;
+};
+
+const buildBirthDateOverview = (language) => {
+  const ui = CHATBOT_UI[language];
+  return `${ui.labels.birthDate}: ${CHATBOT_PERSONAL_INFO[language].birthDate}`;
+};
+
+const buildBirthplaceOverview = (language) => {
+  const ui = CHATBOT_UI[language];
+  return `${ui.labels.birthplace}: ${CHATBOT_PERSONAL_INFO[language].birthPlace}`;
+};
+
+const buildCvOverview = (language) => {
+  const ui = CHATBOT_UI[language];
+  return `${ui.labels.cv}: ${profile.cvPath}`;
+};
+
+const buildCvCard = (language) => {
+  const ui = CHATBOT_UI[language];
+  return {
+    type: "cv",
+    text: `${ui.labels.cvPreview}`,
+    cvPath: profile.cvPath,
+    downloadLabel: ui.labels.cvDownload,
+  };
+};
+
+const buildLanguagesOverview = (language) => {
+  const labels = SPOKEN_LANGUAGES[language].map((item) => `- ${item.label}`).join("\n");
+  return `${TEXTS[language].about.languagesSectionTitle}:
+${labels}`;
+};
+
+const buildExperienceOverview = (language) => {
+  const ui = CHATBOT_UI[language];
+  const lines = EXPERIENCE_METRICS[language].map((item) => `- ${formatMetric(item)}`).join("\n");
+  return `${ui.labels.experience}:
+${lines}`;
+};
+
+const buildLocationOverview = (language) => {
+  const ui = CHATBOT_UI[language];
+  const personal = CHATBOT_PERSONAL_INFO[language];
+  return `${ui.labels.location}: ${personal.residence}
+${ui.labels.birthplace}: ${personal.birthPlace}
+${ui.labels.birthDate}: ${personal.birthDate}
+${ui.labels.country}: ${personal.country}`;
+};
+
+const buildAvailabilityOverview = (language) => {
+  const ui = CHATBOT_UI[language];
+  return `${ui.labels.availability}: ${TEXTS[language].hero.availability}`;
+};
+
+const getIntentAnswer = (intent, language) => {
+  switch (intent) {
+    case "identity":
+      return buildIdentityOverview(language);
+    case "birthdate":
+      return buildBirthDateOverview(language);
+    case "country":
+      return buildCountryOverview(language);
+    case "residence":
+      return buildResidenceOverview(language);
+    case "age":
+      return buildAgeOverview(language);
+    case "birthplace":
+      return buildBirthplaceOverview(language);
+    default:
+      return null;
+  }
+};
+
+const inferIntentFromTypos = (normalizedMessage, language) => {
+  const tokens = tokenize(normalizedMessage);
+  if (!tokens.length) {
+    return null;
+  }
+
+  const hasBilal = hasApproxToken(tokens, ["bilal", "billal", "billa"], 2);
+  const hasWho = hasApproxToken(tokens, ["qui", "who"], 1) || normalizedMessage.includes("من");
+  const hasBorn = hasApproxToken(tokens, ["ne", "nee", "né", "born", "naissance", "مولود", "ولد"], 2);
+  const hasWhen = hasApproxToken(tokens, ["quand", "when", "متى"], 2);
+  const hasWhere = hasApproxToken(tokens, ["ou", "where", "فين", "اين", "أين"], 2);
+  const hasCountry = hasApproxToken(
+    tokens,
+    ["pays", "country", "nationalite", "nationalité", "بلد", "جنسية"],
+    2
+  );
+  const hasResidence = hasApproxToken(tokens, ["habite", "residence", "résidence", "live", "يسكن"], 2);
+  const hasAge =
+    hasKeyword(normalizedMessage, ["age", "âge", "العمر"]) ||
+    normalizedMessage.includes("how old") ||
+    normalizedMessage.includes("quel age") ||
+    normalizedMessage.includes("كم عمر");
+
+  if (hasBilal && hasWho) {
+    return { intent: "identity", confidence: 0.9 };
+  }
+
+  if (hasBilal && hasBorn && hasWhen) {
+    return { intent: "birthdate", confidence: 0.66 };
+  }
+
+  if (hasCountry) {
+    return { intent: "country", confidence: 0.86 };
+  }
+
+  if (hasResidence || (hasBilal && hasWhere && !hasBorn)) {
+    return { intent: "residence", confidence: 0.82 };
+  }
+
+  if (hasAge) {
+    return { intent: "age", confidence: 0.86 };
+  }
+
+  if (hasBorn && hasWhere) {
+    return { intent: "birthplace", confidence: 0.82 };
+  }
+
+  let bestIntent = null;
+  let bestScore = 0;
+
+  const candidates = CHATBOT_INTENT_PHRASES[language] || [];
+  for (const candidate of candidates) {
+    for (const phrase of candidate.phrases) {
+      const score = similarityScore(normalizedMessage, normalizeText(phrase));
+      if (score > bestScore) {
+        bestScore = score;
+        bestIntent = candidate.intent;
+      }
+    }
+  }
+
+  if (bestScore >= 0.57) {
+    return { intent: bestIntent, confidence: bestScore };
+  }
+
+  return null;
+};
+
+const buildClarification = (intent, language) => {
+  const ui = CHATBOT_UI[language];
+  const suggestedQuestion = CHATBOT_CLARIFICATION_QUESTIONS[language]?.[intent];
+  const answer = getIntentAnswer(intent, language);
+
+  if (!suggestedQuestion || !answer) {
+    return null;
+  }
+
+  return {
+    type: "clarify",
+    text: `${ui.clarify.replace("{question}", suggestedQuestion)} ${ui.confirmYesNo}`,
+    answer,
+  };
+};
+
+const buildChatbotResponse = (message, language) => {
+  const ui = CHATBOT_UI[language];
+  const normalized = normalizeText(message);
+
+  if (!normalized) {
+    return { type: "answer", text: ui.empty };
+  }
+
+  for (const [contactType, keywords] of Object.entries(CONTACT_TYPE_KEYWORDS)) {
+    if (hasKeyword(normalized, keywords)) {
+      return { type: "answer", text: buildContactOverview(language, contactType) };
+    }
+  }
+
+  const project = getProjectByMessage(normalized);
+  if (project) {
+    return { type: "answer", text: buildProjectAnswer(project, language, normalized) };
+  }
+
+  if (hasKeyword(normalized, CHATBOT_KEYWORDS.greeting)) {
+    return { type: "answer", text: ui.welcome };
+  }
+
+  if (isSkillsIntent(normalized)) {
+    const skillGroup = detectSkillGroupFromMessage(normalized);
+    if (skillGroup) {
+      return { type: "answer", text: buildSkillGroupOverview(language, skillGroup) };
+    }
+  }
+
+  const specificPersonalIntent = detectPersonalIntent(normalized);
+  if (specificPersonalIntent) {
+    const detailAnswer = buildPersonalDetailOverview(language, specificPersonalIntent);
+    if (detailAnswer) {
+      return { type: "answer", text: detailAnswer };
+    }
+  }
+
+  if (hasKeyword(normalized, CHATBOT_KEYWORDS.identity)) {
+    return { type: "answer", text: buildIdentityOverview(language) };
+  }
+
+  if (normalized === "bilal" || normalized.includes("billal") || normalized.includes("bilal mechekour")) {
+    return { type: "answer", text: buildIdentityOverview(language) };
+  }
+
+  if (hasKeyword(normalized, CHATBOT_KEYWORDS.country)) {
+    return { type: "answer", text: buildCountryOverview(language) };
+  }
+
+  if (hasKeyword(normalized, CHATBOT_KEYWORDS.residence)) {
+    return { type: "answer", text: buildResidenceOverview(language) };
+  }
+
+  if (hasKeyword(normalized, CHATBOT_KEYWORDS.age)) {
+    return { type: "answer", text: buildAgeOverview(language) };
+  }
+
+  if (hasKeyword(normalized, CHATBOT_KEYWORDS.birthdate)) {
+    return { type: "answer", text: buildBirthDateOverview(language) };
+  }
+
+  if (hasKeyword(normalized, CHATBOT_KEYWORDS.birthplace)) {
+    return { type: "answer", text: buildBirthplaceOverview(language) };
+  }
+
+  if (hasKeyword(normalized, CHATBOT_KEYWORDS.profile)) {
+    return { type: "answer", text: buildProfileOverview(language) };
+  }
+
+  if (hasKeyword(normalized, CHATBOT_KEYWORDS.projects)) {
+    return { type: "answer", text: buildProjectsOverview(language) };
+  }
+
+  if (hasKeyword(normalized, CHATBOT_KEYWORDS.skills)) {
+    return { type: "answer", text: buildSkillsOverview(language) };
+  }
+
+  if (hasKeyword(normalized, CHATBOT_KEYWORDS.education)) {
+    return { type: "answer", text: buildEducationOverview(language) };
+  }
+
+  if (hasKeyword(normalized, CHATBOT_KEYWORDS.internship)) {
+    return { type: "answer", text: buildInternshipOverview(language) };
+  }
+
+  if (hasKeyword(normalized, CHATBOT_KEYWORDS.languages)) {
+    return { type: "answer", text: buildLanguagesOverview(language) };
+  }
+
+  if (hasKeyword(normalized, CHATBOT_KEYWORDS.cvDisplay)) {
+    return buildCvCard(language);
+  }
+
+  if (hasKeyword(normalized, CHATBOT_KEYWORDS.cv)) {
+    return buildCvCard(language);
+  }
+
+  if (hasKeyword(normalized, CHATBOT_KEYWORDS.experience)) {
+    return { type: "answer", text: buildExperienceOverview(language) };
+  }
+
+  if (hasKeyword(normalized, CHATBOT_KEYWORDS.location)) {
+    return { type: "answer", text: buildLocationOverview(language) };
+  }
+
+  if (hasKeyword(normalized, CHATBOT_KEYWORDS.availability)) {
+    return { type: "answer", text: buildAvailabilityOverview(language) };
+  }
+
+  if (hasKeyword(normalized, ["contact", "تواصل"])) {
+    return { type: "answer", text: buildContactOverview(language) };
+  }
+
+  const inferredIntent = inferIntentFromTypos(normalized, language);
+  if (inferredIntent?.intent) {
+    if (inferredIntent.confidence >= 0.8) {
+      const directAnswer = getIntentAnswer(inferredIntent.intent, language);
+      if (directAnswer) {
+        return { type: "answer", text: directAnswer };
+      }
+    }
+  }
+
+  const clarification = inferredIntent?.intent
+    ? buildClarification(inferredIntent.intent, language)
+    : null;
+  if (clarification) {
+    return clarification;
+  }
+
+  return { type: "answer", text: ui.fallback };
+};
+
+function ChatbotWidget({ language }) {
+  const ui = CHATBOT_UI[language];
+  const [isOpen, setIsOpen] = useState(false);
+  const [question, setQuestion] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
+  const [pendingClarification, setPendingClarification] = useState(null);
+  const [messages, setMessages] = useState(() => [
+    { id: createMessageId(), role: "bot", text: CHATBOT_UI[language].welcome },
+  ]);
+  const messagesRef = useRef(null);
+  const typingTimeoutRef = useRef(null);
+
+  useEffect(() => {
+    setMessages([{ id: createMessageId(), role: "bot", text: ui.welcome }]);
+    setQuestion("");
+    setIsTyping(false);
+    setPendingClarification(null);
+  }, [language, ui.welcome]);
+
+  useEffect(
+    () => () => {
+      if (typingTimeoutRef.current) {
+        window.clearTimeout(typingTimeoutRef.current);
+      }
+    },
+    []
+  );
+
+  useEffect(() => {
+    if (!messagesRef.current) {
+      return;
+    }
+    messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
+  }, [messages, isTyping, isOpen]);
+
+  const submitQuestion = useCallback(
+    (rawQuestion, options = {}) => {
+      const value = rawQuestion.trim();
+      if (!value) {
+        return;
+      }
+
+      setMessages((prev) => [...prev, { id: createMessageId(), role: "user", text: value }]);
+      setIsTyping(true);
+
+      if (typingTimeoutRef.current) {
+        window.clearTimeout(typingTimeoutRef.current);
+      }
+
+      typingTimeoutRef.current = window.setTimeout(() => {
+        let botText = ui.fallback;
+        let botPayload = { role: "bot", text: ui.fallback };
+        const shouldIgnorePending = Boolean(options.forceFreshQuestion);
+        const activePendingClarification = shouldIgnorePending ? null : pendingClarification;
+
+        if (activePendingClarification) {
+          const confirmation = detectConfirmation(value, language);
+          if (confirmation === "yes") {
+            botText = activePendingClarification.answer;
+            botPayload = { role: "bot", text: botText };
+            setPendingClarification(null);
+          } else if (confirmation === "no") {
+            botText = ui.notUnderstood;
+            botPayload = { role: "bot", text: botText };
+            setPendingClarification(null);
+          } else {
+            botText = ui.confirmYesNo;
+            botPayload = { role: "bot", text: botText };
+          }
+        } else {
+          const response = buildChatbotResponse(value, language);
+          if (response.type === "clarify") {
+            botText = response.text;
+            botPayload = { role: "bot", text: botText };
+            setPendingClarification({ answer: response.answer });
+          } else if (response.type === "cv") {
+            botText = response.text;
+            botPayload = {
+              role: "bot",
+              text: botText,
+              kind: "cv",
+              cvPath: response.cvPath,
+              downloadLabel: response.downloadLabel,
+            };
+            setPendingClarification(null);
+          } else {
+            botText = response.text;
+            botPayload = { role: "bot", text: botText };
+            setPendingClarification(null);
+          }
+        }
+
+        setMessages((prev) => [...prev, { id: createMessageId(), ...botPayload }]);
+        setIsTyping(false);
+      }, 320);
+    },
+    [language, pendingClarification, ui.confirmYesNo, ui.fallback, ui.notUnderstood]
+  );
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    submitQuestion(question);
+    setQuestion("");
+  };
+
+  const handleSuggestion = (suggestion) => {
+    setIsOpen(true);
+    setPendingClarification(null);
+    submitQuestion(suggestion, { forceFreshQuestion: true });
+  };
+
+  return (
+    <div className={`assistant-widget ${isOpen ? "open" : ""}`} dir={language === "ar" ? "rtl" : "ltr"}>
+      {isOpen && (
+        <section className="assistant-panel" aria-label={ui.title}>
+          <header className="assistant-header">
+            <div className="assistant-header-main">
+              <span className="assistant-header-avatar" aria-hidden="true">
+                <img src="/ChatBotBilal.png" alt="" loading="lazy" />
+              </span>
+              <div className="assistant-header-copy">
+                <h3>{ui.botName}</h3>
+                <p>{ui.botRole}</p>
+              </div>
+            </div>
+            <button
+              type="button"
+              className="assistant-close"
+              onClick={() => setIsOpen(false)}
+              aria-label={ui.close}
+            >
+              ✕
+            </button>
+          </header>
+
+          <div className="assistant-messages" ref={messagesRef}>
+            {messages.map((item) => (
+              <article
+                key={item.id}
+                className={`assistant-message ${item.role === "user" ? "user" : "bot"}`}
+              >
+                {item.kind === "cv" ? (
+                  <div className="assistant-bubble assistant-cv-bubble">
+                    <p className="assistant-cv-title">{item.text}</p>
+                    <iframe
+                      className="assistant-cv-frame"
+                      src={item.cvPath}
+                      title={item.text}
+                      loading="lazy"
+                    />
+                    <a className="assistant-cv-download" href={item.cvPath} download>
+                      <span className="assistant-cv-download-icon" aria-hidden="true">
+                        ⭳
+                      </span>
+                      <span>{item.downloadLabel || "Télécharger le CV"}</span>
+                    </a>
+                  </div>
+                ) : (
+                  <p className="assistant-bubble">{item.text}</p>
+                )}
+              </article>
+            ))}
+            {isTyping && (
+              <article className="assistant-message bot">
+                <p className="assistant-bubble assistant-typing">{ui.typing}</p>
+              </article>
+            )}
+          </div>
+
+          <div className="assistant-suggestions">
+            {ui.suggestions.map((suggestion) => (
+              <button key={suggestion} type="button" onClick={() => handleSuggestion(suggestion)}>
+                {suggestion}
+              </button>
+            ))}
+          </div>
+
+          <form className="assistant-form" onSubmit={handleSubmit}>
+            <textarea
+              value={question}
+              onChange={(event) => setQuestion(event.target.value)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" && !event.shiftKey) {
+                  event.preventDefault();
+                  handleSubmit(event);
+                }
+              }}
+              rows={2}
+              placeholder={ui.placeholder}
+            />
+            <button type="submit" disabled={!question.trim()}>
+              {ui.send}
+            </button>
+          </form>
+        </section>
+      )}
+
+      <button
+        type="button"
+        className="assistant-fab"
+        onClick={() => setIsOpen((prev) => !prev)}
+        aria-label={isOpen ? ui.close : ui.open}
+      >
+        <span className="assistant-fab-icon" aria-hidden="true">
+          <img src="/ChatBotBilal.png" alt="" loading="lazy" />
+        </span>
+      </button>
+    </div>
+  );
+}
+
 function App() {
   const languageMenuRef = useRef(null);
   const topbarRef = useRef(null);
@@ -944,7 +2713,7 @@ function App() {
         return;
       }
       const rect = topbar.getBoundingClientRect();
-      const safeOffset = Math.max(88, Math.ceil(rect.bottom + 10));
+      const safeOffset = Math.max(72, Math.ceil(rect.bottom));
       document.documentElement.style.setProperty(
         "--topbar-offset",
         `${safeOffset}px`
@@ -1659,6 +3428,8 @@ function App() {
           </div>
         </section>
       </main>
+
+      <ChatbotWidget language={language} />
 
       <footer className="footer">
         <p>
