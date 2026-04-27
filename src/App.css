@@ -1836,6 +1836,46 @@
   background: #f8fcff;
 }
 
+.assistant-cv-actions {
+  display: grid;
+  gap: 7px;
+}
+
+.assistant-cv-open {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border-radius: 10px;
+  border: 1px solid rgba(56, 189, 248, 0.5);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--primary-strong);
+  font-weight: 700;
+  text-decoration: none;
+  padding: 8px 10px;
+}
+
+.assistant-cv-options {
+  width: min(92%, 315px);
+  display: grid;
+  gap: 8px;
+}
+
+.assistant-cv-option-list {
+  display: grid;
+  gap: 7px;
+}
+
+.assistant-cv-option-list button {
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--primary-strong);
+  cursor: pointer;
+  font-weight: 700;
+  padding: 8px 10px;
+}
+
 .assistant-cv-download {
   display: inline-flex;
   align-items: center;
@@ -1943,6 +1983,17 @@
 
 [data-theme="dark"] .assistant-header h3 {
   color: #dff2ff;
+}
+
+[data-theme="dark"] .assistant-cv-open,
+[data-theme="dark"] .assistant-cv-option-list button {
+  border-color: rgba(56, 189, 248, 0.36);
+  background: rgba(9, 31, 53, 0.88);
+  color: #dff2ff;
+}
+
+[data-theme="dark"] .assistant-cv-option-list button:hover {
+  background: rgba(14, 74, 122, 0.92);
 }
 
 [data-theme="dark"] .assistant-header-avatar {

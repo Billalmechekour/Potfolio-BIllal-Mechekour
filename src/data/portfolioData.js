@@ -87,7 +87,7 @@ export const skills = [
   },
   {
     group: "Données",
-    items: ["MySQL", "PostgreSQL", "MongoDB", "Oracle"],
+    items: ["MySQL", "PostgreSQL", "MongoDB", "Oracle", "Firebase", "Supabase"],
   },
   {
     group: "Big Data",

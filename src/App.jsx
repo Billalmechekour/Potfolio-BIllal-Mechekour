@@ -13,6 +13,27 @@ const LANGUAGE_OPTIONS = [
   { code: "ar", label: "AR", flag: "🇸🇦" },
 ];
 
+const CV_FILES = {
+  fr: {
+    path: encodeURI("/cv/cv francais.pdf"),
+    downloadName: "CV-Billal-Mechekour-FR.pdf",
+  },
+  en: {
+    path: encodeURI("/cv/cv anglais.pdf"),
+    downloadName: "CV-Billal-Mechekour-EN.pdf",
+  },
+  ar: {
+    path: encodeURI("/cv/cv arabe.pdf"),
+    downloadName: "CV-Billal-Mechekour-AR.pdf",
+  },
+};
+
+const CV_LANGUAGE_OPTIONS = [
+  { code: "fr", query: "cv fr" },
+  { code: "en", query: "cv en" },
+  { code: "ar", query: "cv ar" },
+];
+
 const NAV_IDS = ["profile", "projects", "skills", "formation", "contact"];
 const PHOTO_SEQUENCE = [encodeURI("/bilal 3.png")];
 const AD_TECH_ICONS = [
@@ -34,6 +55,8 @@ const AD_TECH_ICONS = [
   { name: "MySQL", src: encodeURI("/icone de publicite/icons8-mysql-24.png") },
   { name: "PostgreSQL", src: encodeURI("/icone de publicite/icons8-postgres-48.png") },
   { name: "MongoDB", src: encodeURI("/icone de publicite/icons8-mongodb-24.png") },
+  { name: "Firebase", src: encodeURI("/icone de publicite/firebase.svg") },
+  { name: "Supabase", src: encodeURI("/icone de publicite/supabase.svg") },
   {
     name: "Hadoop",
     src: encodeURI("/icone de publicite/icons8-système-de-fichiers-distribué-hadoop-48.png"),
@@ -41,6 +64,8 @@ const AD_TECH_ICONS = [
   { name: "Hive", src: encodeURI("/icone de publicite/Apache_Hive_logo.svg") },
   { name: "Git", src: encodeURI("/icone de publicite/icons8-git-50.png") },
   { name: "GitHub", src: encodeURI("/icone de publicite/icons8-github-50.png") },
+  { name: "Postman", src: encodeURI("/icone de publicite/postman.svg") },
+  { name: "Visual Studio", src: encodeURI("/icone de publicite/visual-studio.svg") },
   { name: "Figma", src: encodeURI("/icone de publicite/figma.png") },
   {
     name: "Illustrator",
@@ -562,7 +587,11 @@ const PROJECT_GALLERIES = {
 const SKILL_GROUP_LABELS = {
   Langages: { fr: "Langages", en: "Languages", ar: "اللغات" },
   Web: { fr: "Web", en: "Web", ar: "الويب" },
-  "Données": { fr: "Base de données", en: "Databases", ar: "قواعد البيانات" },
+  "Données": {
+    fr: "Base de données / Backend & Cloud (BaaS)",
+    en: "Databases / Backend & Cloud (BaaS)",
+    ar: "قواعد البيانات / Backend & Cloud (BaaS)",
+  },
   "Big Data": { fr: "Big Data", en: "Big Data", ar: "البيانات الضخمة" },
   "Outils & Design": { fr: "Outils & Design", en: "Tools & Design", ar: "الأدوات والتصميم" },
   "Méthodologies": { fr: "Méthodologies", en: "Methodologies", ar: "المنهجيات" },
@@ -1078,6 +1107,13 @@ const CHATBOT_UI = {
       cv: "📄 CV",
       cvPreview: "📄 Aperçu du CV",
       cvDownload: "⬇️ Télécharger le CV",
+      cvOpen: "Consulter le CV",
+      cvChoose: "Choisis la version du CV que tu veux consulter ou télécharger.",
+      cvLanguages: {
+        fr: "CV en français",
+        en: "CV en anglais",
+        ar: "CV en arabe",
+      },
       location: "📍 Localisation",
       country: "🌍 Pays",
       residence: "🏠 Résidence",
@@ -1143,6 +1179,13 @@ const CHATBOT_UI = {
       cv: "📄 CV",
       cvPreview: "📄 CV preview",
       cvDownload: "⬇️ Download CV",
+      cvOpen: "View CV",
+      cvChoose: "Choose the CV version you want to view or download.",
+      cvLanguages: {
+        fr: "CV in French",
+        en: "CV in English",
+        ar: "CV in Arabic",
+      },
       location: "📍 Location",
       country: "🌍 Country",
       residence: "🏠 Residence",
@@ -1208,6 +1251,13 @@ const CHATBOT_UI = {
       cv: "📄 السيرة الذاتية",
       cvPreview: "📄 معاينة السيرة الذاتية",
       cvDownload: "⬇️ تحميل السيرة الذاتية",
+      cvOpen: "معاينة السيرة الذاتية",
+      cvChoose: "اختر نسخة السيرة الذاتية التي تريد معاينتها أو تحميلها.",
+      cvLanguages: {
+        fr: "السيرة الذاتية بالفرنسية",
+        en: "السيرة الذاتية بالإنجليزية",
+        ar: "السيرة الذاتية بالعربية",
+      },
       location: "📍 الموقع",
       country: "🌍 البلد",
       residence: "🏠 الإقامة",
@@ -1516,6 +1566,21 @@ const CHATBOT_KEYWORDS = {
   availability: ["disponible", "available", "mission", "alternance", "متاح", "فرص"],
 };
 
+const CV_LANGUAGE_KEYWORDS = {
+  fr: [
+    "fr",
+    "francais",
+    "français",
+    "francaise",
+    "française",
+    "french",
+    "فرنسي",
+    "الفرنسية",
+  ],
+  en: ["anglais", "anglaise", "english", "انجليزي", "إنجليزي", "الانجليزية", "الإنجليزية"],
+  ar: ["ar", "arabe", "arabic", "عربي", "العربية", "بالعربية"],
+};
+
 const CHATBOT_CONFIRMATION = {
   fr: {
     yes: ["oui", "ouii", "ouais", "bien sur", "d accord", "ok", "yes", "yep"],
@@ -1547,6 +1612,10 @@ const SKILL_GROUP_ALIASES = {
     "postgresql",
     "mongodb",
     "oracle",
+    "firebase",
+    "supabase",
+    "baas",
+    "cloud",
   ],
   "Big Data": ["big data", "hadoop", "hive"],
   "Outils & Design": ["outils", "design", "tools", "figma", "photoshop", "illustrator", "canva", "git"],
@@ -1725,6 +1794,14 @@ const hasApproxToken = (tokens, dictionary, maxDistance = 2) =>
       return levenshteinDistance(token, normalizedWord) <= maxDistance;
     })
   );
+
+const detectCvLanguage = (normalizedMessage) => {
+  const tokens = tokenize(normalizedMessage);
+
+  return Object.entries(CV_LANGUAGE_KEYWORDS).find(([, keywords]) =>
+    hasKeyword(normalizedMessage, keywords) || hasApproxToken(tokens, keywords, 2)
+  )?.[0] || null;
+};
 
 const detectConfirmation = (message, language) => {
   const normalized = normalizeText(message);
@@ -2257,15 +2334,35 @@ const buildBirthplaceOverview = (language) => {
 
 const buildCvOverview = (language) => {
   const ui = CHATBOT_UI[language];
-  return `${ui.labels.cv}: ${profile.cvPath}`;
+  const lines = CV_LANGUAGE_OPTIONS
+    .map(({ code }) => `- ${ui.labels.cvLanguages[code]}: ${CV_FILES[code].path}`)
+    .join("\n");
+  return `${ui.labels.cv}:\n${lines}`;
 };
 
-const buildCvCard = (language) => {
+const buildCvOptions = (language) => {
   const ui = CHATBOT_UI[language];
   return {
+    type: "cv-options",
+    text: ui.labels.cvChoose,
+    options: CV_LANGUAGE_OPTIONS.map(({ code, query }) => ({
+      code,
+      query,
+      label: ui.labels.cvLanguages[code],
+    })),
+  };
+};
+
+const buildCvCard = (language, requestedLanguage = language) => {
+  const ui = CHATBOT_UI[language];
+  const cvFile = CV_FILES[requestedLanguage] || CV_FILES[language] || CV_FILES.fr;
+  const cvLabel = ui.labels.cvLanguages[requestedLanguage] || ui.labels.cv;
+  return {
     type: "cv",
-    text: `${ui.labels.cvPreview}`,
-    cvPath: profile.cvPath,
+    text: `${ui.labels.cvPreview} - ${cvLabel}`,
+    cvPath: cvFile.path,
+    downloadName: cvFile.downloadName,
+    openLabel: ui.labels.cvOpen,
     downloadLabel: ui.labels.cvDownload,
   };
 };
@@ -2509,16 +2606,16 @@ const buildChatbotResponse = (message, language) => {
     return { type: "answer", text: buildInternshipOverview(language) };
   }
 
+  if (
+    hasKeyword(normalized, CHATBOT_KEYWORDS.cvDisplay) ||
+    hasKeyword(normalized, CHATBOT_KEYWORDS.cv)
+  ) {
+    const requestedCvLanguage = detectCvLanguage(normalized);
+    return requestedCvLanguage ? buildCvCard(language, requestedCvLanguage) : buildCvOptions(language);
+  }
+
   if (hasKeyword(normalized, CHATBOT_KEYWORDS.languages)) {
     return { type: "answer", text: buildLanguagesOverview(language) };
-  }
-
-  if (hasKeyword(normalized, CHATBOT_KEYWORDS.cvDisplay)) {
-    return buildCvCard(language);
-  }
-
-  if (hasKeyword(normalized, CHATBOT_KEYWORDS.cv)) {
-    return buildCvCard(language);
   }
 
   if (hasKeyword(normalized, CHATBOT_KEYWORDS.experience)) {
@@ -2639,7 +2736,18 @@ function ChatbotWidget({ language }) {
               text: botText,
               kind: "cv",
               cvPath: response.cvPath,
+              downloadName: response.downloadName,
+              openLabel: response.openLabel,
               downloadLabel: response.downloadLabel,
+            };
+            setPendingClarification(null);
+          } else if (response.type === "cv-options") {
+            botText = response.text;
+            botPayload = {
+              role: "bot",
+              text: botText,
+              kind: "cv-options",
+              options: response.options,
             };
             setPendingClarification(null);
           } else {
@@ -2660,6 +2768,12 @@ function ChatbotWidget({ language }) {
     event.preventDefault();
     submitQuestion(question);
     setQuestion("");
+  };
+
+  const handleCvOption = (option) => {
+    setIsOpen(true);
+    setPendingClarification(null);
+    submitQuestion(option.query, { forceFreshQuestion: true });
   };
 
   const handleSuggestion = (suggestion) => {
@@ -2717,12 +2831,25 @@ function ChatbotWidget({ language }) {
                       title={item.text}
                       loading="lazy"
                     />
-                    <a className="assistant-cv-download" href={item.cvPath} download>
-                      <span className="assistant-cv-download-icon" aria-hidden="true">
-                        ⭳
-                      </span>
-                      <span>{item.downloadLabel || "Télécharger le CV"}</span>
-                    </a>
+                    <div className="assistant-cv-actions">
+                      <a className="assistant-cv-open" href={item.cvPath} target="_blank" rel="noreferrer">
+                        {item.openLabel || "Consulter le CV"}
+                      </a>
+                      <a className="assistant-cv-download" href={item.cvPath} download={item.downloadName}>
+                        <span>{item.downloadLabel || "Télécharger le CV"}</span>
+                      </a>
+                    </div>
+                  </div>
+                ) : item.kind === "cv-options" ? (
+                  <div className="assistant-bubble assistant-cv-options">
+                    <p className="assistant-cv-title">{item.text}</p>
+                    <div className="assistant-cv-option-list">
+                      {item.options.map((option) => (
+                        <button key={option.code} type="button" onClick={() => handleCvOption(option)}>
+                          {option.label}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 ) : (
                   <p className="assistant-bubble">{item.text}</p>
@@ -3090,6 +3217,7 @@ function App() {
     () => LANGUAGE_OPTIONS.find((item) => item.code === language),
     [language]
   );
+  const currentCvFile = CV_FILES[language] || CV_FILES.fr;
   const [contactForm, setContactForm] = useState({
     lastName: "",
     firstName: "",
@@ -3327,10 +3455,10 @@ function App() {
                 >
                   {text.hero.github}
                 </a>
-                <a className="btn btn-ghost" href={profile.cvPath} target="_blank" rel="noreferrer">
+                <a className="btn btn-ghost" href={currentCvFile.path} target="_blank" rel="noreferrer">
                   {text.hero.contact}
                 </a>
-                <a className="btn btn-soft" href={profile.cvPath} download="CV-Billal-Mechekour.pdf">
+                <a className="btn btn-soft" href={currentCvFile.path} download={currentCvFile.downloadName}>
                   {text.hero.cv}
                 </a>
               </div>
