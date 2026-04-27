@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://potfolio-billal-mechekour.vercel.app/sitemap.xml
