@@ -5,7 +5,7 @@
       <stop offset="100%" stop-color="#0A2A5E" />
     </linearGradient>
   </defs>
-  <rect width="512" height="512" fill="url(#bg)" />
+  <rect width="512" height="512" rx="112" fill="url(#bg)" />
   <rect x="32" y="32" width="448" height="448" rx="96" fill="none" stroke="#35B2FF" stroke-width="24" />
   <text x="256" y="323" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="185" font-weight="900" letter-spacing="-12" fill="#D9F6FF">BM</text>
 </svg>
