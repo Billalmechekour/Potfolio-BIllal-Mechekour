@@ -158,21 +158,48 @@
         },
       };
 
+      const UI_LABELS = {
+        fr: {
+          openPdf: "Ouvrir le PDF",
+          download: "Telecharger",
+          subtitle: "Consultation du CV",
+          actionsLabel: "Actions CV",
+        },
+        en: {
+          openPdf: "Open PDF",
+          download: "Download",
+          subtitle: "Viewing CV",
+          actionsLabel: "CV actions",
+        },
+        ar: {
+          openPdf: "فتح PDF",
+          download: "تحميل",
+          subtitle: "عرض السيرة الذاتية",
+          actionsLabel: "إجراءات السيرة الذاتية",
+        },
+      };
+
       const params = new URLSearchParams(window.location.search);
       const langParam = params.get("lang");
       const lang = CV_FILES[langParam] ? langParam : "fr";
       const cv = CV_FILES[lang];
+      const labels = UI_LABELS[lang];
+      const openPdf = document.getElementById("openPdf");
+      const downloadPdf = document.getElementById("downloadPdf");
 
-      document.documentElement.lang = lang === "ar" ? "ar" : "fr";
+      document.documentElement.lang = lang;
       document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
       document.title = `Billal Mechekour | ${cv.title}`;
 
       document.getElementById("cvTitle").textContent = `Billal Mechekour | ${cv.title}`;
-      document.getElementById("cvSubtitle").textContent = "Consultation du CV";
+      document.getElementById("cvSubtitle").textContent = labels.subtitle;
       document.getElementById("cvFrame").src = cv.path;
-      document.getElementById("openPdf").href = cv.path;
-      document.getElementById("downloadPdf").href = cv.path;
-      document.getElementById("downloadPdf").download = cv.download;
+      document.querySelector(".cv-actions").setAttribute("aria-label", labels.actionsLabel);
+      openPdf.href = cv.path;
+      openPdf.textContent = labels.openPdf;
+      downloadPdf.href = cv.path;
+      downloadPdf.download = cv.download;
+      downloadPdf.textContent = labels.download;
     </script>
   </body>
 </html>
