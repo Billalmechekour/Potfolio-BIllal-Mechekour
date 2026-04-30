@@ -54,7 +54,20 @@
         min-width: 0;
       }
 
-      .cv-brand img {
+      .cv-logo-link {
+        display: inline-flex;
+        flex: 0 0 auto;
+        border-radius: 10px;
+        line-height: 0;
+      }
+
+      .cv-logo-link:focus-visible {
+        outline: 2px solid #d9f6ff;
+        outline-offset: 4px;
+      }
+
+      .cv-logo-link img {
+        display: block;
         width: 38px;
         height: 38px;
       }
@@ -126,7 +139,9 @@
   <body>
     <header class="cv-topbar">
       <div class="cv-brand">
-        <img src="/favicon-96x96.png?v=20260430-sans-bg" alt="BM" />
+        <a id="portfolioLink" class="cv-logo-link" href="/" aria-label="Retour au portfolio">
+          <img src="/favicon-96x96.png?v=20260430-sans-bg" alt="BM" />
+        </a>
         <div class="cv-title">
           <strong id="cvTitle">Billal Mechekour | CV</strong>
           <span id="cvSubtitle">Chargement du CV</span>
@@ -164,18 +179,21 @@
           download: "Telecharger",
           subtitle: "Consultation du CV",
           actionsLabel: "Actions CV",
+          homeLabel: "Retour au portfolio",
         },
         en: {
           openPdf: "Open PDF",
           download: "Download",
           subtitle: "Viewing CV",
           actionsLabel: "CV actions",
+          homeLabel: "Back to portfolio",
         },
         ar: {
           openPdf: "فتح PDF",
           download: "تحميل",
           subtitle: "عرض السيرة الذاتية",
           actionsLabel: "إجراءات السيرة الذاتية",
+          homeLabel: "العودة إلى الصفحة الرئيسية",
         },
       };
 
@@ -195,6 +213,8 @@
       document.getElementById("cvSubtitle").textContent = labels.subtitle;
       document.getElementById("cvFrame").src = cv.path;
       document.querySelector(".cv-actions").setAttribute("aria-label", labels.actionsLabel);
+      document.getElementById("portfolioLink").setAttribute("aria-label", labels.homeLabel);
+      document.getElementById("portfolioLink").setAttribute("title", labels.homeLabel);
       openPdf.href = cv.path;
       openPdf.textContent = labels.openPdf;
       downloadPdf.href = cv.path;
