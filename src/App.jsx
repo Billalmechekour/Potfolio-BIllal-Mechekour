@@ -16,14 +16,17 @@ const LANGUAGE_OPTIONS = [
 const CV_FILES = {
   fr: {
     path: encodeURI("/cv/cv francais.pdf"),
+    viewPath: "/cv/viewer.html?lang=fr",
     downloadName: "CV-Billal-Mechekour-FR.pdf",
   },
   en: {
     path: encodeURI("/cv/cv anglais.pdf"),
+    viewPath: "/cv/viewer.html?lang=en",
     downloadName: "CV-Billal-Mechekour-EN.pdf",
   },
   ar: {
     path: encodeURI("/cv/cv arabe.pdf"),
+    viewPath: "/cv/viewer.html?lang=ar",
     downloadName: "CV-Billal-Mechekour-AR.pdf",
   },
 };
@@ -2362,6 +2365,7 @@ const buildCvCard = (language, requestedLanguage = language) => {
     text: `${ui.labels.cvPreview} - ${cvLabel}`,
     cvPath: cvFile.path,
     downloadName: cvFile.downloadName,
+    cvViewPath: cvFile.viewPath,
     openLabel: ui.labels.cvOpen,
     downloadLabel: ui.labels.cvDownload,
   };
@@ -2832,7 +2836,7 @@ function ChatbotWidget({ language }) {
                       loading="lazy"
                     />
                     <div className="assistant-cv-actions">
-                      <a className="assistant-cv-open" href={item.cvPath} target="_blank" rel="noreferrer">
+                      <a className="assistant-cv-open" href={item.cvViewPath || item.cvPath} target="_blank" rel="noreferrer">
                         {item.openLabel || "Consulter le CV"}
                       </a>
                       <a className="assistant-cv-download" href={item.cvPath} download={item.downloadName}>
@@ -3455,7 +3459,7 @@ function App() {
                 >
                   {text.hero.github}
                 </a>
-                <a className="btn btn-ghost" href={currentCvFile.path} target="_blank" rel="noreferrer">
+                <a className="btn btn-ghost" href={currentCvFile.viewPath} target="_blank" rel="noreferrer">
                   {text.hero.contact}
                 </a>
                 <a className="btn btn-soft" href={currentCvFile.path} download={currentCvFile.downloadName}>

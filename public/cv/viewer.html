@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Billal Mechekour | CV</title>
+    <link rel="icon" href="/favicon.ico?v=20260430-sans-bg" sizes="any" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png?v=20260430-sans-bg" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png?v=20260430-sans-bg" />
+    <link rel="shortcut icon" href="/favicon.ico?v=20260430-sans-bg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20260430-sans-bg" />
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #071b40;
+        color: #f8fbff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        min-height: 100%;
+        margin: 0;
+      }
+
+      body {
+        display: grid;
+        grid-template-rows: auto 1fr;
+        background:
+          radial-gradient(circle at top left, rgba(53, 178, 255, 0.22), transparent 32rem),
+          linear-gradient(135deg, #071b40, #0a2a5e);
+      }
+
+      .cv-topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        min-height: 64px;
+        padding: 0.75rem clamp(1rem, 3vw, 2rem);
+        border-bottom: 1px solid rgba(217, 246, 255, 0.22);
+        background: rgba(7, 27, 64, 0.86);
+        backdrop-filter: blur(12px);
+      }
+
+      .cv-brand {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        min-width: 0;
+      }
+
+      .cv-brand img {
+        width: 38px;
+        height: 38px;
+      }
+
+      .cv-title {
+        min-width: 0;
+      }
+
+      .cv-title strong,
+      .cv-title span {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .cv-title strong {
+        font-size: 1rem;
+      }
+
+      .cv-title span {
+        color: #bfefff;
+        font-size: 0.85rem;
+      }
+
+      .cv-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 0.6rem;
+      }
+
+      .cv-actions a {
+        color: #071b40;
+        background: #d9f6ff;
+        border: 1px solid rgba(217, 246, 255, 0.8);
+        border-radius: 999px;
+        padding: 0.55rem 0.9rem;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 700;
+      }
+
+      .cv-actions a.secondary {
+        color: #f8fbff;
+        background: rgba(217, 246, 255, 0.08);
+      }
+
+      .cv-frame {
+        display: block;
+        width: 100%;
+        height: calc(100vh - 64px);
+        border: 0;
+        background: #f8fbff;
+      }
+
+      @media (max-width: 640px) {
+        .cv-topbar {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .cv-frame {
+          height: calc(100vh - 122px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="cv-topbar">
+      <div class="cv-brand">
+        <img src="/favicon-96x96.png?v=20260430-sans-bg" alt="BM" />
+        <div class="cv-title">
+          <strong id="cvTitle">Billal Mechekour | CV</strong>
+          <span id="cvSubtitle">Chargement du CV</span>
+        </div>
+      </div>
+      <nav class="cv-actions" aria-label="Actions CV">
+        <a id="openPdf" class="secondary" href="/cv/cv%20francais.pdf" target="_blank" rel="noreferrer">Ouvrir le PDF</a>
+        <a id="downloadPdf" href="/cv/cv%20francais.pdf" download="CV-Billal-Mechekour-FR.pdf">Telecharger</a>
+      </nav>
+    </header>
+    <iframe id="cvFrame" class="cv-frame" title="CV Billal Mechekour" src="/cv/cv%20francais.pdf"></iframe>
+
+    <script>
+      const CV_FILES = {
+        fr: {
+          title: "CV francais",
+          path: "/cv/cv%20francais.pdf",
+          download: "CV-Billal-Mechekour-FR.pdf",
+        },
+        en: {
+          title: "CV anglais",
+          path: "/cv/cv%20anglais.pdf",
+          download: "CV-Billal-Mechekour-EN.pdf",
+        },
+        ar: {
+          title: "CV arabe",
+          path: "/cv/cv%20arabe.pdf",
+          download: "CV-Billal-Mechekour-AR.pdf",
+        },
+      };
+
+      const params = new URLSearchParams(window.location.search);
+      const langParam = params.get("lang");
+      const lang = CV_FILES[langParam] ? langParam : "fr";
+      const cv = CV_FILES[lang];
+
+      document.documentElement.lang = lang === "ar" ? "ar" : "fr";
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+      document.title = `Billal Mechekour | ${cv.title}`;
+
+      document.getElementById("cvTitle").textContent = `Billal Mechekour | ${cv.title}`;
+      document.getElementById("cvSubtitle").textContent = "Consultation du CV";
+      document.getElementById("cvFrame").src = cv.path;
+      document.getElementById("openPdf").href = cv.path;
+      document.getElementById("downloadPdf").href = cv.path;
+      document.getElementById("downloadPdf").download = cv.download;
+    </script>
+  </body>
+</html>
