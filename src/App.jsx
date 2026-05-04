@@ -152,7 +152,7 @@ const TEXTS = {
       title: "Ecrivez moi un message",
       text: "Remplis tes informations et envoie ton message directement.",
       sending: "Envoi en cours...",
-      success: "Message envoyé avec succès par email.",
+      success: "Votre message est envoyé avec succès !",
       error: "Impossible d'envoyer le message. Réessaie dans un instant.",
       required: "Merci d'écrire un message avant l'envoi.",
       fields: {
@@ -223,7 +223,7 @@ const TEXTS = {
       title: "Write me a message",
       text: "Fill in your details and send your message directly.",
       sending: "Sending...",
-      success: "Message sent successfully by email.",
+      success: "Your message has been sent successfully!",
       error: "Unable to send the message. Please try again shortly.",
       required: "Please write a message before sending.",
       fields: {
@@ -294,7 +294,7 @@ const TEXTS = {
       title: "اكتب لي رسالة",
       text: "املأ معلوماتك وأرسل رسالتك مباشرة.",
       sending: "جاري الإرسال...",
-      success: "تم إرسال الرسالة بنجاح عبر البريد الإلكتروني.",
+      success: "تم إرسال رسالتك بنجاح !",
       error: "تعذر إرسال الرسالة. حاول مرة أخرى بعد قليل.",
       required: "يرجى كتابة رسالة قبل الإرسال.",
       fields: {
@@ -3227,6 +3227,8 @@ function App() {
     firstName: "",
     message: "",
   });
+  const [toast, setToast] = useState(null);
+  const [sending, setSending] = useState(false);
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
@@ -3243,14 +3245,29 @@ function App() {
 
   const handleContactSubmit = (event) => {
     event.preventDefault();
-    const fullName = `${contactForm.firstName} ${contactForm.lastName}`.trim();
-    const subject = encodeURIComponent(
-      fullName ? `Message portfolio - ${fullName}` : "Message portfolio"
-    );
-    const body = encodeURIComponent(
-      `Nom: ${contactForm.lastName || "-"}\nPrénom: ${contactForm.firstName || "-"}\n\nMessage:\n${contactForm.message || "-"}`
-    );
-    window.location.href = `mailto:billalmechekour@gmail.com?subject=${subject}&body=${body}`;
+    if (sending) return;
+    if (!contactForm.lastName.trim() || !contactForm.firstName.trim() || !contactForm.message.trim()) {
+      setToast({ type: "error", text: text.contact.required });
+      window.setTimeout(() => setToast(null), 3000);
+      return;
+    }
+    setSending(true);
+    const payload = JSON.stringify({
+      Nom: contactForm.lastName.trim(),
+      Prenom: contactForm.firstName.trim(),
+      Message: contactForm.message.trim(),
+    });
+    fetch("https://script.google.com/macros/s/AKfycbzI9-9FlyAkF7o_AyeYUdgJUXwEdTD8ZqXWfQ0YugJpvtioHQuqYpGCZp3A5-EXCGFyvw/exec", {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain" },
+      body: payload,
+      redirect: "follow",
+    }).catch(() => {});
+    setContactForm({ firstName: "", lastName: "", message: "" });
+    setSending(false);
+    setToast({ type: "success", text: text.contact.success });
+    window.setTimeout(() => setToast(null), 4000);
   };
 
   useEffect(() => {
@@ -3760,6 +3777,7 @@ function App() {
                         handleContactFieldChange("lastName", event.target.value)
                       }
                       placeholder={text.contact.fields.lastNamePlaceholder}
+                      required
                     />
                   </label>
                   <label className="contact-field">
@@ -3771,6 +3789,7 @@ function App() {
                         handleContactFieldChange("firstName", event.target.value)
                       }
                       placeholder={text.contact.fields.firstNamePlaceholder}
+                      required
                     />
                   </label>
                 </div>
@@ -3784,11 +3803,12 @@ function App() {
                       handleContactFieldChange("message", event.target.value)
                     }
                     placeholder={text.contact.fields.messagePlaceholder}
+                    required
                   />
                 </label>
 
-                <button type="submit" className="contact-submit">
-                  <span>{text.contact.submit}</span>
+                <button type="submit" className="contact-submit" disabled={sending}>
+                  <span>{sending ? text.contact.sending : text.contact.submit}</span>
                   <span className="contact-submit-icon" aria-hidden="true">
                     <img src="/envoyer.png" alt="" loading="lazy" />
                   </span>
@@ -3821,6 +3841,13 @@ function App() {
           </div>
         </section>
       </main>
+
+      {toast && (
+        <div className={`toast toast-${toast.type}`}>
+          <span>{toast.type === "success" ? "✓" : "✕"}</span>
+          <p>{toast.text}</p>
+        </div>
+      )}
 
       <ChatbotWidget language={language} />
 
