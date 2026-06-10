@@ -46,7 +46,7 @@ const AD_TECH_ICONS = [
     name: "C",
     src: encodeURI("/icone de publicite/icons8-programmation-en-c-48 (1).png"),
   },
-  { name: "C++", src: encodeURI("/icone de publicite/icons8-c++-48 (1).png") },
+  { name: "C++", src: encodeURI("/icone de publicite/cpp.png") },
   { name: "Python", src: encodeURI("/icone de publicite/icons8-python-48.png") },
   { name: "Pascal", src: encodeURI("/icone de publicite/icons8-pascal-48.png") },
   { name: "Node.js", src: encodeURI("/icone de publicite/icons8-nœud-js-48.png") },

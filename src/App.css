@@ -3411,3 +3411,23 @@
 .is-idle *::after {
   animation-play-state: paused !important;
 }
+
+/* Section Projets sans animation d'entrée. Les cartes projets sont lourdes
+   (grandes images) et animaient à l'entrée un flou (filter: blur) + transform
+   3D, ce qui saccadait et provoquait des bugs d'affichage au scroll. On les
+   rend statiques et visibles immédiatement (cartes ET groupes, desktop comme
+   mobile). Le reste du site conserve ses animations reveal. */
+.project-group.reveal,
+.project-group.reveal.in-view,
+.project-card.reveal,
+.project-card.reveal.in-view,
+.project-card.reveal.project-enter-right,
+.project-card.reveal.project-enter-left,
+.project-card.reveal.project-enter-right.in-view,
+.project-card.reveal.project-enter-left.in-view {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+  animation: none !important;
+  will-change: auto !important;
+}
