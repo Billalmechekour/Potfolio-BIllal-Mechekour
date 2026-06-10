@@ -3131,28 +3131,59 @@ function App() {
       return undefined;
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleSections = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-
-        if (visibleSections.length > 0) {
-          const nextSectionId = visibleSections[0].target.id;
-          if (nextSectionId !== activeSectionRef.current) {
-            activeSectionRef.current = nextSectionId;
-            setActiveNav(nextSectionId);
-          }
+    // Détermine la section courante = la dernière dont le haut a franchi une
+    // ligne de référence située à 30% du haut du viewport. Fiable quelle que
+    // soit la hauteur des sections (contrairement à un seuil de ratio, qui
+    // n'est jamais atteint par les sections très hautes).
+    const updateActiveSection = () => {
+      const referenceLine = window.innerHeight * 0.3;
+      let nextSectionId = sections[0].id;
+      for (const section of sections) {
+        if (section.getBoundingClientRect().top <= referenceLine) {
+          nextSectionId = section.id;
         }
-      },
-      {
-        threshold: [0.2, 0.35, 0.5],
-        rootMargin: "-30% 0px -55% 0px",
       }
-    );
 
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
+      // En tout bas de page, la dernière section ne franchit pas toujours la
+      // ligne : on la force active pour que "Contact" s'allume bien.
+      const reachedBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 2;
+      if (reachedBottom) {
+        nextSectionId = sections[sections.length - 1].id;
+      }
+
+      if (nextSectionId !== activeSectionRef.current) {
+        activeSectionRef.current = nextSectionId;
+        setActiveNav(nextSectionId);
+      }
+    };
+
+    // Écouteur de scroll throttlé en requestAnimationFrame : au plus un calcul
+    // par frame, et setActiveNav n'est appelé que lorsque la section change
+    // réellement (donc aucun re-render superflu). Couvre toutes les positions,
+    // y compris le tout bas de page.
+    let frame = 0;
+    const onScroll = () => {
+      if (frame) {
+        return;
+      }
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        updateActiveSection();
+      });
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (frame) {
+        window.cancelAnimationFrame(frame);
+      }
+    };
   }, []);
 
   // Met en pause les animations du hero quand il sort de l'écran : elles
