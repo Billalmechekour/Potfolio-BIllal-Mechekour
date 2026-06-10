@@ -3759,7 +3759,8 @@ function App() {
                     <img
                       src={icon.src}
                       alt={icon.name}
-                      loading="lazy"
+                      loading="eager"
+                      fetchPriority="low"
                       decoding="async"
                     />
                     <span>{icon.name}</span>
