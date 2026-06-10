@@ -1,5 +1,11 @@
 node_modules/
 dist/
+
+# Images sources brutes (PNG haute résolution) : conservées en local comme
+# source des variantes optimisées de public/project-media*. Exclues du dépôt
+# et du build car jamais servies au visiteur (cf. media-sources/README.md).
+media-sources/
+
 .DS_Store
 .env
 .env.local

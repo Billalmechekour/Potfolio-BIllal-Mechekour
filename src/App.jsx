@@ -38,7 +38,7 @@ const CV_LANGUAGE_OPTIONS = [
 ];
 
 const NAV_IDS = ["profile", "projects", "skills", "formation", "contact"];
-const PHOTO_SEQUENCE = [encodeURI("/bilal 3.png")];
+const PHOTO_SEQUENCE = [encodeURI("/bilal 3.webp")];
 const AD_TECH_ICONS = [
   { name: "JavaScript", src: encodeURI("/icone de publicite/script-java.png") },
   { name: "Java", src: encodeURI("/icone de publicite/icons8-java-94.png") },
@@ -3152,6 +3152,26 @@ function App() {
     );
 
     sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
+  // Met en pause les animations du hero quand il sort de l'écran : elles
+  // restent invisibles mais cessent de solliciter le GPU, ce qui fluidifie
+  // le scroll. La classe est posée en DOM direct pour éviter un re-render.
+  useEffect(() => {
+    const hero = document.getElementById("profile");
+    if (!hero || typeof IntersectionObserver === "undefined") {
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        hero.classList.toggle("is-idle", !entry.isIntersecting);
+      },
+      { rootMargin: "200px 0px" }
+    );
+
+    observer.observe(hero);
     return () => observer.disconnect();
   }, []);
 

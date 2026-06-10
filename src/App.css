@@ -3398,3 +3398,14 @@
     transform: translateX(-50%) translateY(0) scale(1);
   }
 }
+
+/* Quand le hero n'est plus visible (scroll vers le bas), on suspend toutes ses
+   animations infinies (orbites, étincelles, halos, étoiles...). Elles sont de
+   toute façon hors écran : le GPU/main-thread est libéré et le scroll devient
+   plus fluide. Aucune incidence visuelle. */
+.hero-screen.is-idle,
+.hero-screen.is-idle *,
+.hero-screen.is-idle *::before,
+.hero-screen.is-idle *::after {
+  animation-play-state: paused !important;
+}
