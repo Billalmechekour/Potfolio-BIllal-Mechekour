@@ -3186,23 +3186,31 @@ function App() {
     };
   }, []);
 
-  // Met en pause les animations du hero quand il sort de l'écran : elles
-  // restent invisibles mais cessent de solliciter le GPU, ce qui fluidifie
-  // le scroll. La classe est posée en DOM direct pour éviter un re-render.
+  // Met en pause les animations des sections animées (hero, bandeau techno des
+  // compétences) quand elles sortent de l'écran : invisibles, elles cessent de
+  // solliciter le GPU, ce qui fluidifie le scroll. La classe est posée en DOM
+  // direct pour éviter un re-render.
   useEffect(() => {
-    const hero = document.getElementById("profile");
-    if (!hero || typeof IntersectionObserver === "undefined") {
+    if (typeof IntersectionObserver === "undefined") {
+      return undefined;
+    }
+    const animatedSections = ["profile", "skills"]
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+    if (!animatedSections.length) {
       return undefined;
     }
 
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        hero.classList.toggle("is-idle", !entry.isIntersecting);
+      (entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle("is-idle", !entry.isIntersecting);
+        });
       },
       { rootMargin: "200px 0px" }
     );
 
-    observer.observe(hero);
+    animatedSections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
   }, []);
 
@@ -3561,6 +3569,8 @@ function App() {
                       src={PHOTO_SEQUENCE[nextPhotoIndex]}
                       alt={`Photo de Billal Mechekour ${nextPhotoIndex + 1}`}
                       className="hero-photo hero-photo-next orbit-in"
+                      loading="lazy"
+                      decoding="async"
                     />
                     <span className="orbital-trail" aria-hidden="true" />
                     <span className="eclipse-shadow" aria-hidden="true" />
@@ -3746,7 +3756,12 @@ function App() {
               <div className="tech-marquee-track">
                 {[...AD_TECH_ICONS, ...AD_TECH_ICONS].map((icon, index) => (
                   <div className="tech-ad-item" key={`${icon.name}-${index}`}>
-                    <img src={icon.src} alt={icon.name} loading="lazy" />
+                    <img
+                      src={icon.src}
+                      alt={icon.name}
+                      loading="lazy"
+                      decoding="async"
+                    />
                     <span>{icon.name}</span>
                   </div>
                 ))}
@@ -3793,6 +3808,7 @@ function App() {
                         src={item.flagSrc}
                         alt={item.flagAlt}
                         loading="lazy"
+                        decoding="async"
                       />
                     ) : (
                       <span

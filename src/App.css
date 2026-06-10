@@ -46,8 +46,10 @@
   padding: 8px 14px;
   border-radius: 18px;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.84);
-  backdrop-filter: blur(8px);
+  /* Fond opaque sans backdrop-filter : un flou sur élément fixe force le
+     navigateur à re-flouter l'arrière-plan à CHAQUE frame de scroll (cause
+     majeure de saccade). Le fond à 0.92 rend le flou inutile, rendu identique. */
+  background: rgba(255, 255, 255, 0.92);
   box-shadow: 0 14px 28px rgba(15, 76, 129, 0.08);
   z-index: 80;
 }
@@ -2174,7 +2176,7 @@
 }
 
 [data-theme="dark"] .topbar {
-  background: rgba(7, 18, 35, 0.88);
+  background: rgba(7, 18, 35, 0.94);
   box-shadow: 0 14px 28px rgba(2, 6, 23, 0.45);
 }
 
@@ -3399,13 +3401,13 @@
   }
 }
 
-/* Quand le hero n'est plus visible (scroll vers le bas), on suspend toutes ses
-   animations infinies (orbites, étincelles, halos, étoiles...). Elles sont de
-   toute façon hors écran : le GPU/main-thread est libéré et le scroll devient
-   plus fluide. Aucune incidence visuelle. */
-.hero-screen.is-idle,
-.hero-screen.is-idle *,
-.hero-screen.is-idle *::before,
-.hero-screen.is-idle *::after {
+/* Quand une section animée n'est plus visible (hero, bandeau techno...), on
+   suspend ses animations infinies (orbites, étincelles, halos, marquee...).
+   Elles sont de toute façon hors écran : le GPU/main-thread est libéré et le
+   scroll devient plus fluide. Aucune incidence visuelle. */
+.is-idle,
+.is-idle *,
+.is-idle *::before,
+.is-idle *::after {
   animation-play-state: paused !important;
 }
